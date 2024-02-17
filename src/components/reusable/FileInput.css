@@ -1,0 +1,32 @@
+.file-input {
+  height: 1rem;
+  width: 6rem;
+  font-size: .8rem;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.file-input-container {
+  display: flex;
+  align-items: center;
+  color: inherit
+}
+
+.file-name {
+  font-size: .8rem;
+  color: inherit
+}
+
+.file-delete {
+  color: red;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.file-hidden {
+  display: none;
+}
