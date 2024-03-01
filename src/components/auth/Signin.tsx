@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useRef} from 'react';
 import {
   View,
   Text,
@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import {
   AppleButton,
   appleAuth,
@@ -20,8 +22,7 @@ import {
 import {setError} from '../../state/slices/errorSlice';
 import Btn from '../reusable/Btn';
 import reusableStyles from '../reusable/styles';
-import {RootStackParamList} from '../../../App';
-import {RootTabParamsList} from '../MainNavigator';
+
 import styles from './styles';
 import Loading from '../reusable/Loading';
 import Title from '../reusable/Title';
@@ -32,12 +33,7 @@ import {
   useAppleSignInMutation,
 } from '../../state/apis/authApi';
 
-type ScreenProps = NativeStackScreenProps<
-  RootStackParamList & RootTabParamsList,
-  'SignIn'
->;
-
-const SignIn = ({navigation}: ScreenProps) => {
+const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -50,12 +46,6 @@ const SignIn = ({navigation}: ScreenProps) => {
 
   const passwordFieldRef = useRef<NativeTextInput | null>(null);
 
-  useEffect(() => {
-    if (user) {
-      navigation.push('Home');
-    }
-  }, [user, navigation]);
-
   const handleSubmit = () => {
     signIn({username, password});
   };
@@ -65,10 +55,14 @@ const SignIn = ({navigation}: ScreenProps) => {
       await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
       const userInfo = await GoogleSignin.signIn();
       if (userInfo.user.familyName && userInfo.user.givenName) {
-        googleSignIn({...userInfo.user, googleId: userInfo.user.id});
+        googleSignIn({...userInfo.user, googleId: userInfo.user.id})
+          .unwrap()
+          .then(() => {});
       }
-    } catch (err) {
-      dispatch(setError('Google Sign In Failed'));
+    } catch (err: any) {
+      if (err.code !== statusCodes.SIGN_IN_CANCELLED) {
+        dispatch(setError('Google Sign In Failed'));
+      }
     }
   };
 

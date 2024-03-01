@@ -27,7 +27,8 @@ const MainNavigator = () => {
         header: Popup,
         tabBarHideOnKeyboard: true,
       }}
-      detachInactiveScreens={false}>
+      // detachInactiveScreens={false}
+    >
       <Tab.Screen
         name="Home"
         component={Home}

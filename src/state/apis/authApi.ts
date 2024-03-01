@@ -64,7 +64,7 @@ const authApi = api.injectEndpoints({
       query: () => '/user/userInfo',
     }),
     googleSignIn: builder.mutation<User, GoogleSignInArgs>({
-      query: body => ({url: '/google-signin', method: 'POST', body}),
+      query: body => ({url: '/google-signin/mobile', method: 'POST', body}),
       transformResponse: setToken,
       invalidatesTags: ['User'],
     }),

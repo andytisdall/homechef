@@ -12,14 +12,12 @@ import {SafeAreaView} from 'react-native';
 import {Provider} from 'react-redux';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
-import Loading from './src/components/reusable/Loading';
 import {useGetUserQuery} from './src/state/apis/authApi';
 import SignIn from './src/components/auth/Signin';
 import styles from './src/baseStyles';
 
 import {store} from './src/state/store';
 import Popup from './src/components/reusable/Popup';
-import Signin from './src/components/auth/Signin';
 import MainNavigator from './src/components/MainNavigator';
 
 GoogleSignin.configure({
@@ -35,7 +33,8 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppContainer = () => {
-  const {data: user, isLoading} = useGetUserQuery();
+  const {data: user} = useGetUserQuery();
+
   return (
     <SafeAreaView style={styles.app}>
       <NavigationContainer>
@@ -43,7 +42,6 @@ const AppContainer = () => {
           screenOptions={{
             header: Popup,
           }}>
-          {isLoading && <Loading />}
           {!user ? (
             <Stack.Screen
               name="SignIn"

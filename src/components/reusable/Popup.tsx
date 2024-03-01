@@ -7,10 +7,9 @@ import styles from './styles';
 import {RootState} from '../../state/store';
 
 const Popup = () => {
-  const [error, alert] = useSelector((state: RootState) => [
-    state.error,
-    state.alert,
-  ]);
+  const error = useSelector((state: RootState) => state.error);
+  const alert = useSelector((state: RootState) => state.alert);
+
   const dispatch = useDispatch();
 
   const renderMessage = () => {
