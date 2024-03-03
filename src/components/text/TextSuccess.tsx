@@ -63,7 +63,7 @@ const TextSuccess = ({navigation}: TextSuccessProps & ScreenProps) => {
           <Pressable
             style={[styles.backBtn]}
             onPress={() => {
-              navigation.push('SendText');
+              navigation.navigate('SendText');
             }}>
             <Text style={styles.backBtnText}>Send Another Text Alert</Text>
           </Pressable>

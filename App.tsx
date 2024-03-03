@@ -40,7 +40,7 @@ const AppContainer = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            header: Popup,
+            headerShown: false,
           }}>
           {!user ? (
             <Stack.Screen
@@ -62,6 +62,7 @@ function App(): JSX.Element {
     <Provider store={store}>
       <PaperProvider>
         <AppContainer />
+        <Popup />
       </PaperProvider>
     </Provider>
   );

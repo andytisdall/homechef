@@ -2,7 +2,6 @@ import {useGetUserInfoQuery} from '../state/apis/authApi';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Home from './home/Home';
-import Popup from './reusable/Popup';
 import Chef from './chef/Chef';
 import Text from './text/Text';
 import CreateTabIcon from './tabs/TabIcon';
@@ -24,7 +23,7 @@ const MainNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        header: Popup,
+        headerShown: false,
         tabBarHideOnKeyboard: true,
       }}
       // detachInactiveScreens={false}

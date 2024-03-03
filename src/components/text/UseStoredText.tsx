@@ -5,7 +5,7 @@ import {colors} from '../shiftSignup/styles';
 import photoStyles from '../reusable/styles';
 import {
   useCheckStoredQuery,
-  useDeletedStoredMutation,
+  useDeleteStoredMutation,
 } from '../../state/apis/textApi';
 
 const UseStoredText = ({
@@ -14,7 +14,7 @@ const UseStoredText = ({
   setUsingStoredText: (value: boolean) => void;
 }) => {
   const {data: storedText} = useCheckStoredQuery();
-  const [deleteStoredText] = useDeletedStoredMutation();
+  const [deleteStoredText] = useDeleteStoredMutation();
 
   if (storedText) {
     return (

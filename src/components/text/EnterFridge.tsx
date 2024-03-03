@@ -22,7 +22,7 @@ const EnterFridge = ({
 
   const renderFridgeOptions = () => {
     if (townFridges) {
-      const options = townFridges.sort().map((f, i) => {
+      const options = [...townFridges].sort().map((f, i) => {
         return {
           label: f.name,
           value: i,

@@ -38,10 +38,6 @@ const EditShift = ({route}: ScreenProps) => {
     }
   };
 
-  if (!shiftsLoading) {
-    return <Loading />;
-  }
-
   const renderCancel = () => {
     let text;
     if (hour?.status === 'Confirmed') {
@@ -67,6 +63,10 @@ const EditShift = ({route}: ScreenProps) => {
 
   const meals = cancel ? 0 : mealCount;
   const disabled = (!mealCount || parseInt(mealCount, 10) < 1) && !cancel;
+
+  if (shiftsLoading) {
+    return <Loading />;
+  }
 
   if (!hour) {
     return <Text>This shift cannot be edited.</Text>;

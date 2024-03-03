@@ -59,8 +59,7 @@ export default StyleSheet.create({
   viewActive: {
     transform: [{scale: 1.1}],
   },
-  jobList: {paddingHorizontal: 10, paddingBottom: '20%'},
-
+  jobList: {paddingHorizontal: 10, paddingBottom: '20%', width: '100%'},
   jobContainer: {
     borderBottomColor: colors.grey,
     borderBottomWidth: 1,

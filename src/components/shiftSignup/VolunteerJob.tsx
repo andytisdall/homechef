@@ -25,7 +25,6 @@ const VolunteerJob = ({route, navigation}: ScreenProps) => {
   const {data, isLoading} = useGetShiftsQuery();
   const shifts = data?.shifts;
   const jobs = data?.jobs;
-
   const job = jobs?.find(j => j.id === jobId);
 
   const renderShift = useCallback(
@@ -81,7 +80,7 @@ const VolunteerJob = ({route, navigation}: ScreenProps) => {
     );
   }, [job, renderShift, shifts]);
 
-  if (!isLoading) {
+  if (isLoading) {
     return <Loading />;
   }
 

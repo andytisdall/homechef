@@ -80,14 +80,13 @@ const ShiftSignup = ({navigation, route}: ScreenProps) => {
             </Pressable>
           </View>
         </View>
-        <View>
-          {viewType === 'list' && (
-            <VolunteerJobsList navigation={navigation} route={route} />
-          )}
-          {viewType === 'calendar' && (
-            <Calendar navigation={navigation} route={route} />
-          )}
-        </View>
+
+        {viewType === 'list' && (
+          <VolunteerJobsList navigation={navigation} route={route} />
+        )}
+        {viewType === 'calendar' && (
+          <Calendar navigation={navigation} route={route} />
+        )}
       </>
     );
   };

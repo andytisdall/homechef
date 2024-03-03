@@ -18,7 +18,7 @@ import {
 
 type ScreenProps = NativeStackScreenProps<SignupStackParamsList, 'ShiftDetail'>;
 
-const ShiftDetail = ({route}: ScreenProps) => {
+const ShiftDetail = ({navigation, route}: ScreenProps) => {
   const [mealCount, setMealCount] = useState('');
   const [soup, setSoup] = useState(false);
 
@@ -56,7 +56,11 @@ const ShiftDetail = ({route}: ScreenProps) => {
         jobId: job.id,
         date: shift.startTime,
         soup,
-      });
+      })
+        .unwrap()
+        .then(hours =>
+          navigation.navigate('SignupConfirm', {hoursId: hours.id}),
+        );
     }
   };
 

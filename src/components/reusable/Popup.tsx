@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {setError} from '../../state/slices/errorSlice';
@@ -12,10 +12,13 @@ const Popup = () => {
 
   const dispatch = useDispatch();
 
+  const clear = () => {
+    dispatch(setError(''));
+    dispatch(setAlert(''));
+  };
+
   const renderMessage = () => {
     if (error.message) {
-      setTimeout(() => dispatch(setError('')), 5000);
-
       return (
         <View style={[styles.popup, styles.error]}>
           <Text style={styles.popupText}>{error.message}</Text>
@@ -23,8 +26,6 @@ const Popup = () => {
       );
     }
     if (alert.message) {
-      setTimeout(() => dispatch(setAlert('')), 5000);
-
       return (
         <View style={[styles.popup, styles.alert]}>
           <Text style={styles.popupText}>{alert.message}</Text>
@@ -32,7 +33,14 @@ const Popup = () => {
       );
     }
   };
-  return <View>{renderMessage()}</View>;
+
+  if (error.message || alert.message) {
+    return (
+      <Pressable style={styles.popupBackground} onPress={clear}>
+        {renderMessage()}
+      </Pressable>
+    );
+  }
 };
 
 export default Popup;

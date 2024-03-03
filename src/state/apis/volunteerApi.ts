@@ -68,13 +68,15 @@ const volunteerApi = api.injectEndpoints({
     getHours: builder.query<HoursState, void>({
       query: () => '/home-chef/hours',
       transformResponse: (response: Hours[]) => _.mapKeys(response, 'id'),
+      providesTags: ['Hour'],
     }),
-    createHours: builder.mutation<null, CreateHoursArgs>({
+    createHours: builder.mutation<Hours, CreateHoursArgs>({
       query: body => ({
         body,
         url: '/home-chef/hours',
         method: 'POST',
       }),
+      invalidatesTags: ['Shift', 'Hour'],
     }),
     editHours: builder.mutation<null, EditHoursArgs>({
       query: body => ({
@@ -86,6 +88,7 @@ const volunteerApi = api.injectEndpoints({
         url: '/home-chef/hours/' + body.id,
         method: 'PATCH',
       }),
+      invalidatesTags: ['Hour'],
     }),
   }),
 });

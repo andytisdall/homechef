@@ -19,7 +19,7 @@ interface SendTextArgs {
   name: string;
   restaurants: string;
   user: User;
-  storedText?: StoredText;
+  storedText?: StoredText | null;
 }
 
 interface StoredText {
@@ -34,6 +34,7 @@ interface SendTextResponse {
   message: string;
   region: Region;
   photoUrl?: string;
+  storedText?: string;
 }
 
 export interface PhotoFile {
@@ -60,17 +61,49 @@ const getStoredText = async () => {
 
 const textApi = api.injectEndpoints({
   endpoints: builder => ({
-    deletedStored: builder.mutation<null, void>({
+    storeText: builder.mutation<null, SendTextResponse>({
+      queryFn: async response => {
+        try {
+          if (response.storedText) {
+            const storedText = JSON.parse(response?.storedText);
+            const modifiedStoredText = {
+              ...storedText,
+              photoUrl: response.photoUrl,
+            };
+            await storeText(modifiedStoredText);
+          }
+          return {data: null};
+        } catch (err) {
+          return {
+            error: {error: 'Could not store text', status: 'CUSTOM_ERROR'},
+          };
+        }
+      },
+      invalidatesTags: ['StoredText'],
+    }),
+    deleteStored: builder.mutation<null, void>({
       queryFn: async () => {
         await AsyncStorage.removeItem('ck-text');
         return {data: null};
       },
+      invalidatesTags: ['StoredText'],
     }),
-    checkStored: builder.query<StoredText | undefined, void>({
+    checkStored: builder.query<StoredText | null, void>({
       queryFn: async () => {
-        const data = await getStoredText();
-        return {data};
+        try {
+          const data = await getStoredText();
+          if (data) {
+            return {data};
+          } else {
+            return {data: null};
+          }
+        } catch (err) {
+          return {
+            error: {error: 'No Stored Text Found', status: 'CUSTOM_ERROR'},
+          };
+        }
       },
+      providesTags: ['StoredText'],
     }),
     getFridges: builder.query<Fridge[], void>({
       query: () => 'home-chef/campaign/fridges',
@@ -97,20 +130,22 @@ const textApi = api.injectEndpoints({
         if (body.user.busDriver) {
           if (body.storedText) {
             if (!photoAlreadySentToThisRegion) {
-              const modifiedStoredText = {
+              const modifiedStoredText: StoredText = {
                 ...body.storedText,
                 sentTo: [...body.storedText.sentTo, body.region],
               };
-              storeText(modifiedStoredText);
+              // storeText(modifiedStoredText);
+              postBody.append('storedText', JSON.stringify(modifiedStoredText));
             }
           } else {
-            const newStoredText = {
+            const newStoredText: StoredText = {
               sentTo: [body.region],
               name: body.name,
               restaurants: body.restaurants,
               date: new Date().toString(),
             };
-            storeText(newStoredText);
+            // storeText(newStoredText);
+            postBody.append('storedText', JSON.stringify(newStoredText));
           }
         }
 
@@ -121,17 +156,6 @@ const textApi = api.injectEndpoints({
           method: 'POST',
         };
       },
-      transformResponse: async (response: SendTextResponse) => {
-        const storedText = await getStoredText();
-        if (storedText) {
-          const modifiedStoredText = {
-            ...storedText,
-            photoUrl: response.photoUrl,
-          };
-          await storeText(modifiedStoredText);
-        }
-        return response;
-      },
     }),
   }),
 });
@@ -140,5 +164,6 @@ export const {
   useSendTextMutation,
   useGetFridgesQuery,
   useCheckStoredQuery,
-  useDeletedStoredMutation,
+  useDeleteStoredMutation,
+  useStoreTextMutation,
 } = textApi;

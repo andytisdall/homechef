@@ -2,7 +2,9 @@ import {useState, useRef} from 'react';
 import {useDispatch} from 'react-redux';
 import {Text, View, ScrollView, Platform} from 'react-native';
 import {format} from 'date-fns';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+import {TextStackParamList} from './Text';
 import Disabled from './Disabled';
 import styles from './styles';
 import Arrow from '../../assets/right-arrow.svg';
@@ -21,10 +23,13 @@ import {
   useCheckStoredQuery,
   useGetFridgesQuery,
   useSendTextMutation,
+  useStoreTextMutation,
 } from '../../state/apis/textApi';
 import {setError} from '../../state/slices/errorSlice';
 
-const SendText = () => {
+type SendTextProps = NativeStackScreenProps<TextStackParamList, 'SendText'>;
+
+const SendText = ({navigation}: SendTextProps) => {
   const [page, setPage] = useState(0);
   const [fridge, setFridge] = useState<number | undefined>();
   const [mealCount, setMealCount] = useState('');
@@ -42,6 +47,8 @@ const SendText = () => {
     fixedCacheKey: 'send-text',
   });
 
+  const [storeText] = useStoreTextMutation();
+
   const dispatch = useDispatch();
 
   const scrollRef = useRef<ScrollView | null>(null);
@@ -52,8 +59,6 @@ const SendText = () => {
       animated: true,
     });
   };
-
-  console.log('send text render');
 
   const clearState = () => {
     setPage(0);
@@ -195,8 +200,7 @@ const SendText = () => {
             photo={photo}
             onSubmit={() => {
               if (fridge !== undefined && townFridges && user) {
-                const photoToSend =
-                  photo || Platform.OS === 'ios' ? {...photo} : null;
+                const photoToSend = photo || null;
                 if (photoToSend && Platform.OS === 'ios') {
                   photoToSend.uri = photo!.uri?.replace('file://', '');
                 }
@@ -207,7 +211,15 @@ const SendText = () => {
                   name,
                   restaurants,
                   user,
-                });
+                  storedText,
+                })
+                  .unwrap()
+                  .then(response => {
+                    if (user.busDriver) {
+                      storeText(response);
+                    }
+                    navigation.navigate('TextSuccess');
+                  });
                 clearState();
               }
             }}

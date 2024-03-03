@@ -17,7 +17,7 @@ export default StyleSheet.create({
     fontSize: 20,
     padding: 10,
     textAlign: 'center',
-    border: '1px solid black',
+    borderWidth: 1,
   },
   sendTextVariablesItem: {
     marginBottom: 10,
@@ -140,9 +140,8 @@ export default StyleSheet.create({
     fontSize: 15,
   },
   dropdownContainer: {
-    padding: 10,
-    borderWidth: 1,
-    height: 'fit-content',
+    borderBottomWidth: 1,
+    marginVertical: 10,
   },
   dropdownText: {
     fontWeight: '600',
