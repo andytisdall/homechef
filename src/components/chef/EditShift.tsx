@@ -19,7 +19,7 @@ import {
 
 type ScreenProps = NativeStackScreenProps<ChefStackParamsList, 'EditShift'>;
 
-const EditShift = ({route}: ScreenProps) => {
+const EditShift = ({navigation, route}: ScreenProps) => {
   const {hoursId} = route.params;
   const [cancel, setCancel] = useState(false);
 
@@ -34,7 +34,9 @@ const EditShift = ({route}: ScreenProps) => {
   const onSubmit = () => {
     if (data) {
       const fridge = data.jobs.find(j => j.id === hour?.job)?.name;
-      editHours({id: hoursId, mealCount, cancel, fridge, date: hour?.time});
+      editHours({id: hoursId, mealCount, cancel, fridge, date: hour?.time})
+        .unwrap()
+        .then(() => navigation.navigate('ChefShifts'));
     }
   };
 

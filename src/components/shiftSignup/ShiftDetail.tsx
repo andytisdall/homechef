@@ -78,7 +78,7 @@ const ShiftDetail = ({navigation, route}: ScreenProps) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.homeChef}>
-        <View style={[styles.signupDetail, styles.signupMain]}>
+        <View style={[styles.signupDetail]}>
           <View style={styles.signupDetailInfo}>
             <View style={styles.signupField}>
               <Text style={styles.confirmLabel}>Date:</Text>

@@ -1,6 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import BlankHeaderLeft from '../reusable/BlankHeaderLeft';
 import ShiftSignup from './ShiftSignup';
 import VolunteerJob from './VolunteerJob';
 import DateDetail from './DateDetail';
@@ -21,7 +20,7 @@ const signupScreenOptions = {title: 'Town Fridge Sign Up'};
 
 const Signup = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerBackTitleVisible: false}}>
       <Stack.Screen
         name="ShiftSignup"
         component={ShiftSignup}
@@ -46,7 +45,7 @@ const Signup = () => {
         name="SignupConfirm"
         component={Confirmation}
         options={{
-          headerLeft: BlankHeaderLeft,
+          headerBackVisible: false,
           ...signupScreenOptions,
         }}
       />

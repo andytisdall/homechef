@@ -1,9 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const dateHeight = Dimensions.get('screen').height / 11;
 
 export default StyleSheet.create({
   calendar: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    flex: 1,
   },
   calendarWeekdays: {
     flexDirection: 'row',
@@ -14,34 +17,34 @@ export default StyleSheet.create({
   },
   calendarWeekdayText: {
     textAlign: 'center',
+    color: 'black',
   },
   calendarDate: {
     flexBasis: '14.285%',
-    borderWidth: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.291)',
-    minHeight: 70,
+    borderWidth: 0.5,
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    minHeight: dateHeight,
   },
   blankDate: {
-    minHeight: 70,
+    minHeight: dateHeight,
     flexBasis: '14.285%',
   },
   calendarDateNumberContainer: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // alignSelf: 'flex-start',
     position: 'absolute',
     top: 0,
   },
-  calendarDateBackground: {flex: 1, flexDirection: 'row'},
+  calendarDateBackground: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   calendarDateNumber: {
     fontSize: 12,
     textAlign: 'center',
     padding: 3,
   },
   arrow: {
-    height: 30,
-    width: 60,
-    paddingVertical: 5,
+    height: 22,
+    width: 70,
   },
   arrowHighlight: {
     backgroundColor: 'rgba(250,250,250,.5)',
@@ -50,7 +53,7 @@ export default StyleSheet.create({
   monthHeader: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 25,
+    marginBottom: 20,
     alignItems: 'center',
   },
   btn: {backgroundColor: 'blue'},
@@ -60,5 +63,14 @@ export default StyleSheet.create({
   monthTitle: {
     fontSize: 15,
     fontWeight: '600',
+    color: 'black',
+  },
+  calendarContainer: {
+    width: Dimensions.get('screen').width * 2.5,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  calendarScreen: {
+    marginTop: 15,
   },
 });

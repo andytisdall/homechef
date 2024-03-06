@@ -2,7 +2,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import SendText from './SendText';
 import TextSuccess from './TextSuccess';
-import BlankHeaderLeft from '../reusable/BlankHeaderLeft';
 
 export type TextStackParamList = {
   SendText: undefined;
@@ -18,7 +17,7 @@ const Text = () => {
         name="SendText"
         component={SendText}
         options={{
-          headerLeft: BlankHeaderLeft,
+          headerBackVisible: false,
           title: 'Send a Town Fridge Delivery Alert',
         }}
       />
@@ -26,7 +25,7 @@ const Text = () => {
         name="TextSuccess"
         component={TextSuccess}
         options={{
-          headerLeft: BlankHeaderLeft,
+          headerBackVisible: false,
           title: 'You sent a Town Fridge Delivery Alert',
         }}
       />

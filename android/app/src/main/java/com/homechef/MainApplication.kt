@@ -1,4 +1,4 @@
-package com.homechef
+package com.ckhomechefapp
 
 import android.app.Application
 import com.facebook.react.PackageList

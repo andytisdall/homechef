@@ -87,6 +87,7 @@ const authApi = api.injectEndpoints({
         body: {token},
         method: 'POST',
       }),
+      invalidatesTags: ['User'],
     }),
     signOut: builder.mutation<null, void>({
       queryFn: async () => {

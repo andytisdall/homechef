@@ -1,4 +1,5 @@
 import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import {useEffect} from 'react';
 
 import Btn from '../reusable/Btn';
 import {colors} from '../shiftSignup/styles';
@@ -7,13 +8,27 @@ import {
   useGetUserQuery,
   useSignOutMutation,
   useGetUserInfoQuery,
+  useRegisterDeviceTokenMutation,
 } from '../../state/apis/authApi';
+import Notifications from '../../NotificationsService';
 
 const Home = () => {
   const {data: user} = useGetUserQuery();
   const {data: userInfo} = useGetUserInfoQuery();
 
   const [signOut] = useSignOutMutation();
+  const [registerToken] = useRegisterDeviceTokenMutation();
+
+  useEffect(() => {
+    if (user) {
+      Notifications.init(({token}) => {
+        if (token !== user.homeChefNotificationToken) {
+          registerToken(token);
+        }
+      });
+    }
+  }, [user, registerToken]);
+
   let headerText = 'Home Chef App';
   if (user?.busDriver) {
     headerText = 'Mobile Oasis Delivery';

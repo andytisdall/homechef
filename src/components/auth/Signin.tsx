@@ -22,7 +22,6 @@ import {
 import {setError} from '../../state/slices/errorSlice';
 import Btn from '../reusable/Btn';
 import reusableStyles from '../reusable/styles';
-
 import styles from './styles';
 import Loading from '../reusable/Loading';
 import Title from '../reusable/Title';
@@ -55,9 +54,7 @@ const SignIn = () => {
       await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
       const userInfo = await GoogleSignin.signIn();
       if (userInfo.user.familyName && userInfo.user.givenName) {
-        googleSignIn({...userInfo.user, googleId: userInfo.user.id})
-          .unwrap()
-          .then(() => {});
+        googleSignIn({...userInfo.user, googleId: userInfo.user.id});
       }
     } catch (err: any) {
       if (err.code !== statusCodes.SIGN_IN_CANCELLED) {
@@ -114,7 +111,7 @@ const SignIn = () => {
   return (
     <ScrollView contentContainerStyle={reusableStyles.scrollView}>
       <View style={styles.signin}>
-        <Title />
+        <Title headerText="Home Chef App" />
         <View style={styles.CKSignin}>
           <Text style={styles.signinText}>Sign in with your CK username</Text>
 
@@ -133,6 +130,7 @@ const SignIn = () => {
                   passwordFieldRef.current.focus();
                 }
               }}
+              autoCapitalize="none"
             />
             <TextInput
               style={styles.authInput}

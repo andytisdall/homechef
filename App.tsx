@@ -15,7 +15,6 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useGetUserQuery} from './src/state/apis/authApi';
 import SignIn from './src/components/auth/Signin';
 import styles from './src/baseStyles';
-
 import {store} from './src/state/store';
 import Popup from './src/components/reusable/Popup';
 import MainNavigator from './src/components/MainNavigator';

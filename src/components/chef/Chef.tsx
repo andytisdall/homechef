@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator<ChefStackParamsList>();
 
 const Chef = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerBackTitleVisible: false}}>
       <Stack.Screen
         name="ChefShifts"
         component={ChefShifts}

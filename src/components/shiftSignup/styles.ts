@@ -134,7 +134,7 @@ export default StyleSheet.create({
   calendarLinkText: {fontSize: 12, textAlign: 'center'},
   calendarLinkInactive: {backgroundColor: colors.red},
   calendarLinkPressed: {backgroundColor: colors.lightGreen},
-  signupDetail: {alignItems: 'center', paddingHorizontal: 5},
+  signupDetail: {alignItems: 'center'},
   signupDetailInfo: {
     paddingHorizontal: 5,
     marginBottom: 25,
