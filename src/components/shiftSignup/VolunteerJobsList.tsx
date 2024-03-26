@@ -70,14 +70,22 @@ const VolunteerJobsList = ({navigation}: ScreenProps) => {
       );
     };
 
-    return <FlatList data={sortedJobs} renderItem={renderJob} />;
+    return (
+      <FlatList
+        data={sortedJobs}
+        renderItem={renderJob}
+        style={styles.flatList}
+      />
+    );
   };
 
   if (isLoading) {
     return <Loading />;
   }
 
-  return <View style={styles.jobList}>{renderJobs()}</View>;
+  return (
+    <View style={[styles.jobList, styles.scrollView]}>{renderJobs()}</View>
+  );
 };
 
 export default VolunteerJobsList;

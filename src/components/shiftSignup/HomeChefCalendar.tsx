@@ -1,7 +1,7 @@
 import {useMemo, useCallback} from 'react';
 import {format, utcToZonedTime, zonedTimeToUtc} from 'date-fns-tz';
 import {addDays, subDays} from 'date-fns';
-import {Text, Pressable, View, ScrollView} from 'react-native';
+import {Text, Pressable, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import styles from './styles';
@@ -88,11 +88,9 @@ const HomeChefCalendar = ({navigation}: ScreenProps) => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
-      <View style={styles.calendarContainer}>
-        <Calendar renderItems={getShifts} />
-      </View>
-    </ScrollView>
+    <View style={styles.calendarContainer}>
+      <Calendar renderItems={getShifts} />
+    </View>
   );
 };
 

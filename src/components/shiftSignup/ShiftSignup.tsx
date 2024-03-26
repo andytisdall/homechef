@@ -1,12 +1,5 @@
 import {useState} from 'react';
-import {
-  View,
-  Text,
-  LayoutAnimation,
-  Switch,
-  Pressable,
-  FlatList,
-} from 'react-native';
+import {View, Text, LayoutAnimation, Switch, Pressable} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {SignupStackParamsList} from './Signup';
@@ -93,16 +86,12 @@ const ShiftSignup = ({navigation, route}: ScreenProps) => {
 
   return (
     <View style={styles.homeChef}>
-      <FlatList
-        style={[styles.flatList, styles.signupMain]}
-        data={[
-          <View style={styles.signupHeader}>
-            <Text style={styles.signupTitle}>Town Fridge Sign Up</Text>
-            {renderSignup()}
-          </View>,
-        ]}
-        renderItem={({item}) => item}
-      />
+      <View style={[styles.flatList, styles.signupMain]}>
+        <View style={styles.signupHeader}>
+          <Text style={styles.signupTitle}>Town Fridge Sign Up</Text>
+          {renderSignup()}
+        </View>
+      </View>
     </View>
   );
 };
