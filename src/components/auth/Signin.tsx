@@ -57,7 +57,9 @@ const SignIn = () => {
         googleSignIn({...userInfo.user, googleId: userInfo.user.id});
       }
     } catch (err: any) {
-      if (err.code !== statusCodes.SIGN_IN_CANCELLED) {
+      if (err.code === statusCodes.SIGN_IN_CANCELLED) {
+        dispatch(setError('Google Sign In Canceled'));
+      } else {
         dispatch(setError('Google Sign In Failed'));
       }
     }
