@@ -151,7 +151,7 @@ const textApi = api.injectEndpoints({
 
         return {
           formData: true,
-          url: '/text/outgoing',
+          url: '/text/outgoing/mobile',
           body: postBody,
           method: 'POST',
         };

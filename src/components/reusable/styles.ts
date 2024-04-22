@@ -21,6 +21,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: '600',
     color: 'black',
+    marginBottom: 15,
   },
   popupBackground: {
     backgroundColor: 'rgba(250,250,250, .5)',

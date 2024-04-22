@@ -5,7 +5,6 @@ import styles from './styles';
 const Title = ({headerText}: {headerText?: string}) => {
   return (
     <View style={styles.appTitleContainer}>
-      {/* <Text style={styles.appTitle}>Community Kitchens</Text> */}
       <View style={styles.appTitleImageContainer}>
         <Image
           style={styles.appTitleImage}
