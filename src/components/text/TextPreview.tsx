@@ -7,7 +7,8 @@ import styles from './styles';
 import photoStyles from '../reusable/styles';
 import {PhotoFile} from '../reusable/AddPhoto';
 import {useCheckStoredQuery} from '../../state/apis/textApi';
-// import Loading from '../reusable/Loading';
+import {useGetUserQuery} from '../../state/apis/authApi';
+import {useState} from 'react';
 
 interface TextPreviewProps {
   onSubmit: () => void;
@@ -15,6 +16,7 @@ interface TextPreviewProps {
   region: string;
   photo: PhotoFile | undefined;
   onCancel: () => void;
+  createMealDelivery: () => void;
 }
 
 const TextPreview = ({
@@ -23,29 +25,51 @@ const TextPreview = ({
   region,
   photo,
   onCancel,
+  createMealDelivery,
 }: TextPreviewProps) => {
-  // const [image, setImage] = useState(photo);
+  const [askToLog, setAskToLog] = useState(false);
 
-  // useEffect(() => {
-  //   if (photo?.name.toLowerCase().includes('.heic')) {
-  //     setImage(null);
-  //     const convert = async () => {
-  //       const pic = await heic2any({
-  //         blob: photo,
-  //         toType: 'image/jpeg',
-  //         quality: 0.3,
-  //       });
-  //       setImage(pic);
-  //     };
-  //     convert();
-  //   }
-  // }, [photo]);
+  const {data: user} = useGetUserQuery();
   const {data: stored} = useCheckStoredQuery();
+
+  const renderCreateDelivery = () => {
+    return (
+      <View>
+        <Text style={styles.textPreviewTitle}>
+          Do you want to log this delivery?
+        </Text>
+        <Text style={styles.textPreviewText}>
+          Please log if the delivery was not scheduled.
+        </Text>
+        <View style={styles.textPreviewBtns}>
+          <Btn
+            style={styles.sendBtn}
+            onPress={() => {
+              createMealDelivery();
+              onSubmit();
+            }}>
+            <Text>Yes</Text>
+          </Btn>
+          <Btn
+            style={[styles.sendBtn, styles.cancel]}
+            onPress={() => {
+              onSubmit();
+            }}>
+            <Text>No</Text>
+          </Btn>
+        </View>
+      </View>
+    );
+  };
+
+  if (askToLog) {
+    return renderCreateDelivery();
+  }
+
   return (
     <View style={styles.textPreview}>
       <Text style={styles.textPreviewTitle}>Confirm Your Message:</Text>
       <Text style={styles.textPreviewText}>{message}</Text>
-      {/* {photo && !image && <Loading />} */}
       {(!!photo || !!stored?.photoUrl) && (
         <View style={photoStyles.photoPreview}>
           <Image
@@ -58,7 +82,16 @@ const TextPreview = ({
 
       <Text style={styles.textPreviewRegion}>Region: {region}</Text>
       <View style={styles.textPreviewBtns}>
-        <Btn style={styles.sendBtn} onPress={onSubmit}>
+        <Btn
+          style={styles.sendBtn}
+          onPress={() => {
+            // if user is busdriver, ask to log
+            if (user?.busDriver) {
+              setAskToLog(true);
+            } else {
+              onSubmit();
+            }
+          }}>
           <Text style={styles.sendBtnText}>Send Message</Text>
         </Btn>
 

@@ -19,6 +19,9 @@ const NotificationsList = () => {
     return <Loading />;
   }
 
+  if (!notifications?.length) {
+    return <></>;
+  }
   return (
     <View>
       <Text style={styles.notificationsTitle}>Recent Notifications</Text>

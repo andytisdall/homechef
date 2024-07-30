@@ -42,8 +42,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Take a photo for your town fridge alert</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Attach a photo to your town fridge alert</string>
 	<key>UIBackgroundModes</key>
@@ -54,7 +52,7 @@
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>arm64</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

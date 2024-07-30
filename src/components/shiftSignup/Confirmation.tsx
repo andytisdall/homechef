@@ -72,11 +72,7 @@ const Confirmation = ({navigation, route}: ScreenProps) => {
         </View>
       );
     } else {
-      return (
-        <Text style={styles.confirmText}>
-          Could not find the details of this shift.
-        </Text>
-      );
+      return <Loading />;
     }
   };
 

@@ -16,25 +16,34 @@ import {checkNotifications, RESULTS} from 'react-native-permissions';
 // Android doesn't need the user's consent to send notifications, whereas iOS does
 // but Android's user can still turn off notifications in the system settings
 
+export type Notification = Omit<ReceivedNotification, 'userInfo'>;
+
 class NotificationService {
-  init = (handleRegister: ({token}: {token: string}) => void) => {
-    this.configure(handleRegister);
-  };
+  public token?: string;
+  public initNotification?: Notification;
+  public listeners: Record<string, (notification: Notification) => void>;
+  public channelId: string;
+
+  constructor() {
+    this.listeners = {};
+    this.channelId = 'PUSH-LOCAL-NOTIFICATIONS';
+  }
 
   delete = () => {
     PushNotificationIOS.removeEventListener('registrationError');
   };
 
-  async configure(register: ({token}: {token: string}) => void) {
-    const onRegister = register;
-    if (Platform.OS === 'android') {
-      PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-      );
+  register = async (registerToken: (token: string) => void) => {
+    await this.checkAndGetPermissionIfAlreadyGiven();
+    if (this.token) {
+      registerToken(this.token);
     }
+  };
+
+  async configure() {
     PushNotification.configure({
       onNotification: this.handleNotification,
-      onRegister,
+      onRegister: ({token}: {token: string}) => (this.token = token),
       // IOS ONLY (optional): default: all - Permissions to register.
       permissions: {
         alert: true,
@@ -43,9 +52,8 @@ class NotificationService {
       },
 
       popInitialNotification: true,
-      requestPermissions: true, // set to true if you want to request iOS notification when the app starts
+      // requestPermissions: true, // set to true if you want to request iOS notification when the app starts
     });
-    this.checkAndGetPermissionIfAlreadyGiven();
     this.initAndroidLocalScheduledNotifications();
     if (Platform.OS === 'ios') {
       PushNotificationIOS.addEventListener(
@@ -71,6 +79,11 @@ class NotificationService {
   };
 
   checkPermission = async () => {
+    if (Platform.OS === 'android') {
+      PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+      );
+    }
     const authStatus = await checkNotifications().then(({status}) => status);
     // …'unavailable' | 'denied' | 'limited' | 'granted' | 'blocked'
     let permission: {granted: boolean; canAsk?: boolean} = {
@@ -136,7 +149,6 @@ class NotificationService {
 
   // LOCAL NOTIFICATIONS
 
-  channelId = 'PUSH-LOCAL-NOTIFICATIONS'; // same as in strings.xml, for Android
   initAndroidLocalScheduledNotifications = () => {
     PushNotification.createChannel(
       {
@@ -185,10 +197,7 @@ class NotificationService {
     });
   }
 
-  listeners = {};
-  handleNotification = (
-    notification: Omit<ReceivedNotification, 'userInfo'>,
-  ) => {
+  handleNotification = (notification: Notification) => {
     // console.log('handle Notification', JSON.stringify(notification, null, 2));
 
     /* ANDROID FOREGROUND */
@@ -202,35 +211,35 @@ class NotificationService {
     }
     /* LISTENERS */
 
-    // const listenerKeys = Object.keys(this.listeners);
+    const listenerKeys = Object.keys(this.listeners);
     //  handle initial notification if any, if no listener is mounted yet
-    // if (!listenerKeys.length) {
-    //   this.initNotification = notification;
-    //   notification.finish(PushNotificationIOS.FetchResult.NoData);
-    //   return;
-    // }
-    // this.initNotification = undefined;
+    if (!listenerKeys.length) {
+      this.initNotification = notification;
+      notification.finish(PushNotificationIOS.FetchResult.NoData);
+      return;
+    }
+    this.initNotification = undefined;
 
-    //handle normal notification
-    // for (let i = listenerKeys.length - 1; i >= 0; i--) {
-    //   const notificationHandler = this.listeners[listenerKeys[i]];
-    //   notificationHandler(notification);
-    // }
-    // notification.finish(PushNotificationIOS.FetchResult.NoData);
+    // handle normal notification
+    for (let i = listenerKeys.length - 1; i >= 0; i--) {
+      const notificationHandler = this.listeners[listenerKeys[i]];
+      notificationHandler(notification);
+    }
+    notification.finish(PushNotificationIOS.FetchResult.NoData);
   };
 
-  // listen = callback => {
-  //   const listenerKey = `listener_${Date.now()}`;
-  //   this.listeners[listenerKey] = callback;
-  //   if (this.initNotification) {
-  //     this.handleNotification(this.initNotification);
-  //   }
-  //   return listenerKey;
-  // };
+  listen = (callback: (notification: Notification) => void) => {
+    const listenerKey = `listener_${Date.now()}`;
+    this.listeners[listenerKey] = callback;
+    if (this.initNotification) {
+      this.handleNotification(this.initNotification);
+    }
+    return listenerKey;
+  };
 
-  // remove = listenerKey => {
-  //   delete this.listeners[listenerKey];
-  // };
+  remove = (listenerKey: string) => {
+    delete this.listeners[listenerKey];
+  };
 }
 
 const Notifications = new NotificationService();

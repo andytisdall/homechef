@@ -97,7 +97,7 @@ const ShiftDetail = ({navigation, route}: ScreenProps) => {
             <Text>{job.location}</Text>
 
             <View style={styles.signupFields}>
-              <View style={styles.signupField}>
+              <View style={styles.signupMealEntry}>
                 <TextInput
                   keyboardType="numeric"
                   placeholder="25"
@@ -108,8 +108,8 @@ const ShiftDetail = ({navigation, route}: ScreenProps) => {
                   autoFocus
                   textColor="black"
                 />
-                <View style={styles.signupFieldText}>
-                  <Text style={styles.confirmText}>
+                <View style={styles.signupMealEntry}>
+                  <Text style={styles.mealEntryText}>
                     Number of Meals You Plan to Deliver
                   </Text>
                   <Text>(You can change this later)</Text>

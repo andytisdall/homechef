@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 export const colors = {
   beige: 'rgb(231, 206, 166)',
   dark: 'rgb(10, 110, 189)',
@@ -12,6 +12,8 @@ export const colors = {
   highlight: 'rgba(250,250,250, .5)',
   white: 'white',
 };
+
+const height = Dimensions.get('screen').height;
 
 export default StyleSheet.create({
   scrollView: {
@@ -33,7 +35,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   signupTitle: {fontSize: 25, textAlign: 'center'},
-  switch: {marginVertical: 15, width: '100%'},
+  switch: {marginTop: 10, width: '100%'},
   switchRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -45,7 +47,7 @@ export default StyleSheet.create({
     color: 'grey',
   },
   switchBtn: {flex: 1, paddingHorizontal: 20},
-  switchText: {textAlign: 'center', padding: 10},
+  switchText: {textAlign: 'center', padding: 5},
   navBtn: {
     backgroundColor: colors.dark,
     marginBottom: 30,
@@ -130,8 +132,11 @@ export default StyleSheet.create({
     flex: 1,
     paddingTop: 15,
   },
-  calendarLinkNumber: {fontSize: 20, textAlign: 'center'},
-  calendarLinkText: {fontSize: 12, textAlign: 'center'},
+  calendarLinkNumber: {
+    fontSize: height / 45,
+    textAlign: 'center',
+  },
+  calendarLinkText: {fontSize: height / 65, textAlign: 'center'},
   calendarLinkInactive: {backgroundColor: colors.red},
   calendarLinkPressed: {backgroundColor: colors.lightGreen},
   signupDetail: {alignItems: 'center'},
@@ -145,6 +150,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginVertical: 15,
   },
+  signupMealEntry: {alignItems: 'center', marginVertical: 10},
   signupFields: {
     borderBottomWidth: 1,
     borderTopWidth: 1,
@@ -163,7 +169,7 @@ export default StyleSheet.create({
   signupSubmitText: {
     textAlign: 'center',
   },
-  mealCountInput: {width: 75, backgroundColor: 'white'},
+  mealCountInput: {width: 75, backgroundColor: 'white', marginVertical: 5},
   checkbox: {
     paddingLeft: 15,
   },
@@ -200,5 +206,16 @@ export default StyleSheet.create({
   },
   calendarContainer: {
     paddingBottom: 150,
+  },
+  jobSubHeader: {
+    textAlign: 'center',
+    fontSize: 18,
+    textDecorationLine: 'underline',
+  },
+  mealEntryText: {
+    fontWeight: '600',
+    fontSize: 20,
+    textAlign: 'center',
+    paddingBottom: 5,
   },
 });

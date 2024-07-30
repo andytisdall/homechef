@@ -51,7 +51,8 @@ const getStoredText = async () => {
   const storedTextString = await AsyncStorage.getItem('ck-text');
   if (storedTextString) {
     const storedText = JSON.parse(storedTextString) as StoredText;
-    if (addDays(new Date(storedText.date), 1) > new Date()) {
+
+    if (addDays(new Date(storedText.date), 1) < new Date()) {
       return storedText;
     } else {
       await AsyncStorage.removeItem('ck-text');
@@ -134,7 +135,6 @@ const textApi = api.injectEndpoints({
                 ...body.storedText,
                 sentTo: [...body.storedText.sentTo, body.region],
               };
-              // storeText(modifiedStoredText);
               postBody.append('storedText', JSON.stringify(modifiedStoredText));
             }
           } else {
@@ -144,10 +144,26 @@ const textApi = api.injectEndpoints({
               restaurants: body.restaurants,
               date: new Date().toString(),
             };
-            // storeText(newStoredText);
             postBody.append('storedText', JSON.stringify(newStoredText));
           }
         }
+
+        // return {
+        //   data: {
+        //     message: '',
+        //     region: 'EAST_OAKLAND',
+        //     photoUrl:
+        //       'https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg?w=400&h=300&c=crop',
+        //     storedText: JSON.stringify({
+        //       photoUrl:
+        //         'https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg?w=400&h=300&c=crop',
+        //       sentTo: ['EAST_OAKLAND'],
+        //       name: 'Oranges',
+        //       restaurants: 'CK Kitchen',
+        //       date: new Date().toString(),
+        //     }),
+        //   },
+        // };
 
         return {
           formData: true,

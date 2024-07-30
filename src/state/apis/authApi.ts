@@ -58,20 +58,21 @@ const authApi = api.injectEndpoints({
         method: 'POST',
       }),
       transformResponse: setToken,
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User', 'UserInfo'],
     }),
     getUserInfo: builder.query<UserInfo, void>({
       query: () => '/user/userInfo',
+      providesTags: ['UserInfo'],
     }),
     googleSignIn: builder.mutation<User, GoogleSignInArgs>({
       query: body => ({url: '/google-signin/mobile', method: 'POST', body}),
       transformResponse: setToken,
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User', 'UserInfo'],
     }),
     appleSignIn: builder.mutation<User, AppleSignInArgs>({
       query: body => ({url: '/apple-signin', body, method: 'POST'}),
       transformResponse: setToken,
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User', 'UserInfo'],
     }),
     getUser: builder.query<User, void>({
       query: () => '/user',
@@ -95,7 +96,7 @@ const authApi = api.injectEndpoints({
         api.util.resetApiState();
         return {data: null};
       },
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User', 'UserInfo'],
     }),
   }),
 });

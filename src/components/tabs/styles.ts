@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  tabIconContainer: {padding: 2},
+  tabIconContainer: {margin: 10},
   tabIcon: {
     flex: 1,
     height: '100%',

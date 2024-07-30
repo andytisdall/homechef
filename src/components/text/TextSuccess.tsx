@@ -71,7 +71,13 @@ const TextSuccess = ({navigation}: TextSuccessProps & ScreenProps) => {
       </ScrollView>
     );
   } else {
-    return <></>;
+    return (
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <View style={styles.sendText}>
+          <Text>Info about this text could not be found.</Text>
+        </View>
+      </ScrollView>
+    );
   }
 };
 

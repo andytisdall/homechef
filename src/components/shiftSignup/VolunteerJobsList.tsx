@@ -79,12 +79,10 @@ const VolunteerJobsList = ({navigation}: ScreenProps) => {
     );
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <View style={[styles.jobList, styles.scrollView]}>{renderJobs()}</View>
+    <View style={[styles.jobList, styles.scrollView]}>
+      {isLoading ? <Loading /> : renderJobs()}
+    </View>
   );
 };
 

@@ -26,6 +26,7 @@ import {
   useStoreTextMutation,
 } from '../../state/apis/textApi';
 import {setError} from '../../state/slices/errorSlice';
+import {useCreateMealDeliveryMutation} from '../../state/apis/mealProgramApi';
 
 type SendTextProps = NativeStackScreenProps<TextStackParamList, 'SendText'>;
 
@@ -46,6 +47,7 @@ const SendText = ({navigation}: SendTextProps) => {
   const [sendText, {isLoading}] = useSendTextMutation({
     fixedCacheKey: 'send-text',
   });
+  const [createMealDelivery] = useCreateMealDeliveryMutation();
 
   const [storeText] = useStoreTextMutation();
 
@@ -216,6 +218,7 @@ const SendText = ({navigation}: SendTextProps) => {
                   .unwrap()
                   .then(response => {
                     if (user.busDriver) {
+                      console.log(response);
                       storeText(response);
                     }
                     navigation.navigate('TextSuccess');
@@ -224,6 +227,12 @@ const SendText = ({navigation}: SendTextProps) => {
               }
             }}
             onCancel={clearState}
+            createMealDelivery={() =>
+              createMealDelivery({
+                numberOfMealsMeat: parseInt(mealCount, 10),
+                numberOfMealsVeg: 0,
+              })
+            }
           />
         );
       default:

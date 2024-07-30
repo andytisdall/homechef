@@ -62,7 +62,7 @@ const DateDetail = ({route, navigation}: ScreenProps) => {
         <Text style={[styles.jobContainer, styles.signupTitle]}>
           {format(zonedTimeToUtc(date, 'America/Los_Angeles'), 'eeee, M/d/yy')}
         </Text>
-        <Text style={styles.signupTitle}>Available Fridges</Text>
+        <Text style={styles.jobSubHeader}>Available Fridges</Text>
         {renderShifts()}
       </View>
     </ScrollView>

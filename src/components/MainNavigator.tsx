@@ -1,5 +1,6 @@
 import {useGetUserInfoQuery} from '../state/apis/authApi';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigatorScreenParams} from '@react-navigation/native';
 
 import Home from './home/Home';
 import Chef from './chef/Chef';
@@ -7,9 +8,10 @@ import Text from './text/Text';
 import CreateTabIcon from './tabs/TabIcon';
 import CreateTabLabel from './tabs/TabLabel';
 import Signup from './shiftSignup/Signup';
+import {SignupStackParamsList} from './shiftSignup/Signup';
 
 export type RootTabParamsList = {
-  Signup: undefined;
+  Signup: NavigatorScreenParams<SignupStackParamsList>;
   Home: undefined;
   Text: undefined;
   Deliveries: undefined;
@@ -25,6 +27,7 @@ const MainNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
+        tabBarStyle: {paddingTop: 5},
       }}
       detachInactiveScreens={false}>
       <Tab.Screen

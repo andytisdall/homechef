@@ -53,13 +53,12 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 }
 
 
-
-- (NSURL *)getBundleURL
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
-  return [self getBundleURL];
+  return [self bundleURL];
 }
 
-- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+- (NSURL *)bundleURL
 {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
