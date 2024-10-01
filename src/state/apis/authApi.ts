@@ -45,7 +45,11 @@ interface AppleSignInArgs {
 }
 
 const setToken = async (response: SignInResponse) => {
-  await AsyncStorage.setItem('ck-token', response.token);
+  try {
+    await AsyncStorage.setItem('ck-token', response.token);
+  } catch (err) {
+    console.log('could not set token to local storage!');
+  }
   return response.user;
 };
 

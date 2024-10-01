@@ -32,11 +32,9 @@ const Calendar = ({
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponderCapture: (event, gesture) => {
-        return gesture.dx !== 0 && gesture.dy !== 0;
-      },
       onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (e, gesture) =>
+        gesture.dx !== 0 && gesture.dy !== 0,
       onPanResponderEnd: (event, gesture) => {
         if (gesture.dx < -150) {
           Animated.timing(translateValue, {
