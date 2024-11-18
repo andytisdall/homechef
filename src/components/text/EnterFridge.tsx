@@ -28,9 +28,45 @@ const EnterFridge = ({
           value: i,
         };
       });
-      return [...options];
+      // if (fridge) {
+      //   options.splice(fridge, 1);
+      // }
+      return options;
     }
     return [];
+  };
+
+  const renderFridgeInfo = () => {
+    if (fridgeMenuOpen) {
+      return (
+        <View style={styles.fridgeNotes}>
+          <Text style={styles.fridgeNotesText}>
+            Note: Bartlett fridge deliveries do not get a text message.
+          </Text>
+        </View>
+      );
+    }
+    if (fridge !== undefined && townFridges) {
+      return (
+        <View style={styles.fridgeInfo}>
+          <View>
+            {!!townFridges[fridge].location && (
+              <>
+                <Text style={styles.fridgeInfoLabel}>Address: </Text>
+
+                <Text style={styles.fridgeInfoValue}>
+                  {townFridges[fridge].location}
+                </Text>
+              </>
+            )}
+          </View>
+          <View>
+            <Text style={styles.fridgeInfoLabel}>Region: </Text>
+            <Text style={styles.fridgeInfoValue}>{region}</Text>
+          </View>
+        </View>
+      );
+    }
   };
 
   return (
@@ -43,33 +79,16 @@ const EnterFridge = ({
           items={renderFridgeOptions()}
           setOpen={setFridgeMenuOpen}
           setValue={setFridge}
-          listMode="MODAL"
+          listMode="SCROLLVIEW"
           placeholder="Select a Town Fridge"
           maxHeight={Math.round(height) / 2}
           zIndex={100}
           listItemContainerStyle={styles.dropdownContainer}
           textStyle={styles.dropdownText}
+          selectedItemContainerStyle={styles.selectedFridgeStyle}
         />
 
-        {fridge !== undefined && townFridges && (
-          <View style={styles.fridgeInfo}>
-            <View>
-              {!!townFridges[fridge].address && (
-                <>
-                  <Text style={styles.fridgeInfoLabel}>Address: </Text>
-
-                  <Text style={styles.fridgeInfoValue}>
-                    {townFridges[fridge].address}
-                  </Text>
-                </>
-              )}
-            </View>
-            <View>
-              <Text style={styles.fridgeInfoLabel}>Region: </Text>
-              <Text style={styles.fridgeInfoValue}>{region}</Text>
-            </View>
-          </View>
-        )}
+        {renderFridgeInfo()}
       </View>
     </View>
   );

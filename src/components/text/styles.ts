@@ -141,11 +141,26 @@ export default StyleSheet.create({
   },
   dropdownContainer: {
     borderBottomWidth: 1,
-    marginVertical: 10,
+    backgroundColor: 'rgb(200,200,200)',
+    padding: 5,
   },
   dropdownText: {
     fontWeight: '600',
     fontSize: 20,
+  },
+  fridgeNotes: {
+    justifyContent: 'flex-end',
+    marginTop: '75%',
+  },
+  fridgeNotesText: {
+    color: 'white',
+    fontSize: 20,
+  },
+  selectedFridgeStyle: {
+    backgroundColor: 'pink',
+  },
+  unselectedFridgeStyle: {
+    backgroundColor: 'grey',
   },
 });
 

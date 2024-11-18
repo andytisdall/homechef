@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {View, Text, ScrollView} from 'react-native';
 import {format, zonedTimeToUtc} from 'date-fns-tz';
@@ -29,6 +29,9 @@ const ShiftDetail = ({navigation, route}: ScreenProps) => {
 
   const shifts = data?.shifts;
   const jobs = data?.jobs;
+
+  const entreeRef = useRef<BouncyCheckbox>(null);
+  const soupRef = useRef<BouncyCheckbox>(null);
 
   if (isLoading) {
     return <Loading />;
@@ -78,70 +81,94 @@ const ShiftDetail = ({navigation, route}: ScreenProps) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.homeChef}>
-        <View style={[styles.signupDetail]}>
-          <View style={styles.signupDetailInfo}>
-            <View style={styles.signupField}>
-              <Text style={styles.confirmLabel}>Date:</Text>
-              <Text style={styles.confirmText}>
-                {format(
-                  zonedTimeToUtc(shift.startTime, 'America/Los_Angeles'),
-                  'eeee, M/d/yy',
-                )}
-              </Text>
-            </View>
-
-            <View style={styles.signupField}>
-              <Text style={styles.confirmLabel}>Fridge:</Text>
-              <Text style={styles.confirmText}>{job.name}</Text>
-            </View>
-            <Text>{job.location}</Text>
-
-            <View style={styles.signupFields}>
-              <View style={styles.signupMealEntry}>
-                <TextInput
-                  keyboardType="numeric"
-                  placeholder="25"
-                  placeholderTextColor={placeholderColor}
-                  value={mealCount}
-                  onChangeText={setMealCount}
-                  style={styles.mealCountInput}
-                  autoFocus
-                  textColor="black"
-                />
-                <View style={styles.signupMealEntry}>
-                  <Text style={styles.mealEntryText}>
-                    Number of Meals You Plan to Deliver
-                  </Text>
-                  <Text>(You can change this later)</Text>
-                </View>
-              </View>
-              <View style={styles.signupField}>
-                <BouncyCheckbox
-                  onPress={(isChecked: boolean) => setSoup(isChecked)}
-                  fillColor="rgb(100,100,250)"
-                  unfillColor="white"
-                  style={styles.checkbox}
-                />
-                <Text style={styles.confirmText}>This meal is soup</Text>
-              </View>
-            </View>
+        <View style={styles.signupDetailInfo}>
+          <View style={styles.signupField}>
+            <Text style={styles.confirmLabel}>Date:</Text>
+            <Text style={styles.confirmText}>
+              {format(
+                zonedTimeToUtc(shift.startTime, 'America/Los_Angeles'),
+                'eeee, M/d/yy',
+              )}
+            </Text>
           </View>
 
-          <Text style={styles.signupSubmitText}>
-            Click submit to sign up for this slot
-          </Text>
-          <View style={styles.submitContainer}>
-            {signupLoading ? (
-              <Loading />
-            ) : (
-              <Btn
-                style={[styles.submitBtn]}
-                onPress={onSubmit}
-                disabled={disabled}>
-                <Text style={reusableStyles.btnText}>Submit</Text>
-              </Btn>
-            )}
+          <View style={styles.signupField}>
+            <Text style={styles.confirmLabel}>Fridge:</Text>
+            <Text style={styles.confirmText}>{job.name}</Text>
           </View>
+          <Text>{job.location}</Text>
+
+          <View style={styles.signupField}>
+            <View>
+              <Text style={styles.mealEntryText}>Number of Meals:</Text>
+              <Text>(You can change this later)</Text>
+            </View>
+            <TextInput
+              keyboardType="numeric"
+              placeholder="25"
+              placeholderTextColor={placeholderColor}
+              value={mealCount}
+              onChangeText={setMealCount}
+              style={styles.mealCountInput}
+              autoFocus
+              textColor="black"
+            />
+          </View>
+          <Text style={styles.mealEntryText}>Type of Meal:</Text>
+          <View style={styles.signupField}>
+            <BouncyCheckbox
+              onPress={checked => {
+                if (checked) {
+                  setSoup(false);
+                  soupRef.current?.setState({checked: false});
+                } else {
+                  soupRef.current?.setState({checked: true});
+                }
+              }}
+              isChecked={!soup}
+              fillColor="rgb(100,100,250)"
+              unfillColor="white"
+              style={styles.checkbox}
+              ref={entreeRef}
+            />
+            <Text style={styles.confirmText}>Entree</Text>
+          </View>
+          <View style={styles.signupField}>
+            <BouncyCheckbox
+              onPress={checked => {
+                if (checked) {
+                  setSoup(true);
+                  entreeRef.current?.setState({checked: false});
+                } else {
+                  entreeRef.current?.setState({checked: true});
+                }
+              }}
+              isChecked={soup}
+              fillColor="rgb(100,100,250)"
+              unfillColor="white"
+              style={styles.checkbox}
+              ref={soupRef}
+            />
+            <Text style={styles.confirmText}>Soup</Text>
+          </View>
+          {!!job.notes && (
+            <View style={styles.signupNotes}>
+              <Text>{job.notes}</Text>
+            </View>
+          )}
+        </View>
+
+        <View style={styles.submitContainer}>
+          {signupLoading ? (
+            <Loading />
+          ) : (
+            <Btn
+              style={[styles.submitBtn]}
+              onPress={onSubmit}
+              disabled={disabled}>
+              <Text style={reusableStyles.btnText}>SIGN UP</Text>
+            </Btn>
+          )}
         </View>
       </View>
     </ScrollView>

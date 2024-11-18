@@ -44,10 +44,13 @@ interface AppleSignInArgs {
   authorizationCode: string | null;
 }
 
+export const userToken: {token?: string} = {};
+
 const setToken = async (response: SignInResponse) => {
   try {
     await AsyncStorage.setItem('ck-token', response.token);
   } catch (err) {
+    userToken.token = response.token;
     console.log('could not set token to local storage!');
   }
   return response.user;

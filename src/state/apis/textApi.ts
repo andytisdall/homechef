@@ -4,11 +4,13 @@ import {addDays} from 'date-fns';
 import {api} from '../api';
 import {User} from './authApi';
 
-type Region = 'EAST_OAKLAND' | 'WEST_OAKLAND';
+export type Region = 'East Oakland' | 'West Oakland';
 
 export interface Fridge {
+  id: string;
   name: string;
-  address: string;
+  location: string;
+  active: boolean;
   region: Region;
 }
 
@@ -107,7 +109,7 @@ const textApi = api.injectEndpoints({
       providesTags: ['StoredText'],
     }),
     getFridges: builder.query<Fridge[], void>({
-      query: () => 'home-chef/campaign/fridges',
+      query: () => 'home-chef/fridges',
     }),
     sendText: builder.mutation<SendTextResponse, SendTextArgs>({
       query: body => {
@@ -147,23 +149,6 @@ const textApi = api.injectEndpoints({
             postBody.append('storedText', JSON.stringify(newStoredText));
           }
         }
-
-        // return {
-        //   data: {
-        //     message: '',
-        //     region: 'EAST_OAKLAND',
-        //     photoUrl:
-        //       'https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg?w=400&h=300&c=crop',
-        //     storedText: JSON.stringify({
-        //       photoUrl:
-        //         'https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg?w=400&h=300&c=crop',
-        //       sentTo: ['EAST_OAKLAND'],
-        //       name: 'Oranges',
-        //       restaurants: 'CK Kitchen',
-        //       date: new Date().toString(),
-        //     }),
-        //   },
-        // };
 
         return {
           formData: true,

@@ -7,11 +7,12 @@ import styles from './styles';
 import photoStyles from '../reusable/styles';
 import Loading from '../reusable/Loading';
 import {useSendTextMutation} from '../../state/apis/textApi';
+import {Region} from '../../state/apis/textApi';
 
 export type SentMessage = {
   message: string;
   photoUrl: string | undefined;
-  region: 'WEST_OAKLAND' | 'EAST_OAKLAND';
+  region: Region;
 };
 
 interface TextSuccessProps {
@@ -19,11 +20,6 @@ interface TextSuccessProps {
 }
 
 type ScreenProps = NativeStackScreenProps<TextStackParamList, 'TextSuccess'>;
-
-const regionNames = {
-  EAST_OAKLAND: 'East Oakland',
-  WEST_OAKLAND: 'West Oakland',
-};
 
 const TextSuccess = ({navigation}: TextSuccessProps & ScreenProps) => {
   const [photoLoading, setPhotoLoading] = useState(true);
@@ -45,7 +41,7 @@ const TextSuccess = ({navigation}: TextSuccessProps & ScreenProps) => {
             <Text style={styles.textPreviewText}>{message.message}</Text>
 
             <Text style={styles.textPreviewRegion}>
-              Region: {regionNames[message.region]}
+              Region: {message.region}
             </Text>
             {!!message.photoUrl && (
               <View style={photoStyles.photoPreview}>

@@ -100,9 +100,8 @@ const VolunteerJob = ({route, navigation}: ScreenProps) => {
             {job.name}
           </Text>
         </View>
-        {!!job.location && (
-          <Text style={styles.location}>Location: {job.location}</Text>
-        )}
+        {!!job.location && <Text style={styles.location}>{job.location}</Text>}
+        {!!job.notes && <Text style={styles.location}>Note: {job.notes}</Text>}
         {job.active ? renderShifts : <Text>Out of Service</Text>}
       </View>
     </View>

@@ -79,8 +79,8 @@ android {
         applicationId "com.ckhomechefapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "1.12"
+        versionCode 14
+        versionName "1.14"
     }
     signingConfigs {
         debug {

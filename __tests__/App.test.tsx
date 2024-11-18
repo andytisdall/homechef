@@ -1,17 +1,11 @@
-/**
- * @format
- */
+import {screen, render} from '../src/tests/test-utils';
 
-import 'react-native';
-import React from 'react';
-import App from '../App';
+import {AppContainer} from '../App';
 
-// Note: import explicitly to use the types shipped with jest.
-import {it} from '@jest/globals';
+test('App Renders', async () => {
+  render(<AppContainer />);
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+  const header = await screen.findByText(/home chef app/i);
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+  expect(header).toBeOnTheScreen();
 });

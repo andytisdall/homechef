@@ -74,8 +74,8 @@ const SendText = ({navigation}: SendTextProps) => {
   };
 
   const getAddress = () => {
-    if (fridge !== undefined && townFridges && townFridges[fridge].address) {
-      return `, at ${townFridges[fridge].address},`;
+    if (fridge !== undefined && townFridges && townFridges[fridge].location) {
+      return `, at ${townFridges[fridge].location},`;
     } else {
       return '';
     }
@@ -83,13 +83,7 @@ const SendText = ({navigation}: SendTextProps) => {
 
   const getRegion = () => {
     if (fridge !== undefined && townFridges) {
-      const {region} = townFridges[fridge];
-      if (region === 'EAST_OAKLAND') {
-        return 'East Oakland';
-      }
-      if (region === 'WEST_OAKLAND') {
-        return 'West Oakland';
-      }
+      return townFridges[fridge].region;
     }
     return '';
   };

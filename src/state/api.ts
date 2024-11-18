@@ -6,8 +6,12 @@ import type {
 } from '@reduxjs/toolkit/query/react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// let url = 'http://192.168.0.102:3001/api';
-let url = 'https://portal.ckoakland.org/api';
+import {userToken} from './apis/authApi';
+
+let url =
+  process.env.NODE_ENV === 'production'
+    ? 'https://portal.ckoakland.org/api'
+    : 'http://192.168.0.111:3001/api';
 
 const baseQueryWithToken: BaseQueryFn<
   string | FetchArgs,
@@ -20,7 +24,10 @@ const baseQueryWithToken: BaseQueryFn<
     prepareHeaders: headers => {
       if (token) {
         headers.set('authorization', token);
+      } else if (userToken.token) {
+        headers.set('authorization', userToken.token);
       }
+
       return headers;
     },
   });

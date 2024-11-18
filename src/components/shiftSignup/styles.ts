@@ -139,7 +139,6 @@ export default StyleSheet.create({
   calendarLinkText: {fontSize: height / 65, textAlign: 'center'},
   calendarLinkInactive: {backgroundColor: colors.red},
   calendarLinkPressed: {backgroundColor: colors.lightGreen},
-  signupDetail: {alignItems: 'center'},
   signupDetailInfo: {
     paddingHorizontal: 5,
     marginBottom: 25,
@@ -148,15 +147,9 @@ export default StyleSheet.create({
   signupField: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 15,
+    marginVertical: 10,
   },
-  signupMealEntry: {alignItems: 'center', marginVertical: 10},
-  signupFields: {
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
-    marginTop: 20,
-    maxWidth: '90%',
-  },
+
   signupFieldText: {paddingLeft: 10, flexShrink: 1},
   fullShift: {
     paddingVertical: 5,
@@ -166,16 +159,20 @@ export default StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
   },
-  signupSubmitText: {
+  mealCountInput: {
+    fontSize: 20,
+    marginLeft: 25,
+    width: 75,
+    backgroundColor: 'white',
     textAlign: 'center',
+    borderWidth: 2,
+    borderColor: 'rgb(100,100,250)',
   },
-  mealCountInput: {width: 75, backgroundColor: 'white', marginVertical: 5},
   checkbox: {
     paddingLeft: 15,
   },
   submitContainer: {
-    marginTop: 40,
-    height: 100,
+    alignItems: 'center',
   },
   submitBtn: {
     backgroundColor: colors.dark,
@@ -215,7 +212,11 @@ export default StyleSheet.create({
   mealEntryText: {
     fontWeight: '600',
     fontSize: 20,
-    textAlign: 'center',
     paddingBottom: 5,
+  },
+  signupNotes: {
+    marginTop: 10,
+    width: '90%',
+    alignItems: 'center',
   },
 });

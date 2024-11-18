@@ -11,6 +11,7 @@ import {PaperProvider} from 'react-native-paper';
 import {SafeAreaView} from 'react-native';
 import {Provider} from 'react-redux';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {PropsWithChildren} from 'react';
 
 import {useGetUserQuery} from './src/state/apis/authApi';
 import SignIn from './src/components/auth/Signin';
@@ -31,7 +32,7 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const AppContainer = () => {
+export const AppContainer = () => {
   const {data: user} = useGetUserQuery();
 
   return (
@@ -56,14 +57,20 @@ const AppContainer = () => {
   );
 };
 
-function App(): JSX.Element {
+export const Providers = ({children}: PropsWithChildren) => {
   return (
     <Provider store={store}>
-      <PaperProvider>
-        <AppContainer />
-        <Popup />
-      </PaperProvider>
+      <PaperProvider>{children}</PaperProvider>
     </Provider>
+  );
+};
+
+function App(): JSX.Element {
+  return (
+    <Providers>
+      <AppContainer />
+      <Popup />
+    </Providers>
   );
 }
 
