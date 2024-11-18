@@ -219,4 +219,10 @@ export default StyleSheet.create({
     width: '90%',
     alignItems: 'center',
   },
+  regionHeader: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: '700',
+    marginTop: 20,
+  },
 });

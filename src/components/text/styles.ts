@@ -148,13 +148,10 @@ export default StyleSheet.create({
     fontWeight: '600',
     fontSize: 20,
   },
-  fridgeNotes: {
-    justifyContent: 'flex-end',
-    marginTop: '75%',
-  },
   fridgeNotesText: {
     color: 'white',
     fontSize: 20,
+    marginTop: 15,
   },
   selectedFridgeStyle: {
     backgroundColor: 'pink',

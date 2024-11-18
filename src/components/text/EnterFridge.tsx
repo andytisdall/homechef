@@ -37,9 +37,9 @@ const EnterFridge = ({
   };
 
   const renderFridgeInfo = () => {
-    if (fridgeMenuOpen) {
+    if (fridge === undefined) {
       return (
-        <View style={styles.fridgeNotes}>
+        <View>
           <Text style={styles.fridgeNotesText}>
             Note: Bartlett fridge deliveries do not get a text message.
           </Text>

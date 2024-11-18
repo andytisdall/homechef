@@ -28,60 +28,78 @@ export interface Shift {
 
 type ScreenProps = NativeStackScreenProps<SignupStackParamsList, 'ShiftSignup'>;
 
+const RegionHeader = ({title}: {title: string}) => {
+  return <Text style={styles.regionHeader}>{title}</Text>;
+};
+
 const VolunteerJobsList = ({navigation}: ScreenProps) => {
   const {data, isLoading} = useGetShiftsQuery();
   const jobs = data?.jobs;
 
-  const renderJobs = () => {
-    if (!jobs?.length) {
-      return <Text>No jobs could be found.</Text>;
+  const sortedJobs = jobs
+    ?.filter(job => job.ongoing)
+    .sort(a => (a.active ? -1 : 1));
+
+  const eastFridges = sortedJobs?.filter(j => j.region === 'East Oakland');
+  const westFridges = sortedJobs?.filter(j => j.region === 'West Oakland');
+
+  const renderJob = ({item}: {item: Job}) => {
+    const nameStyle: any[] = [styles.jobName];
+    if (!item.active) {
+      nameStyle.push(styles.jobInactiveText);
     }
-    const sortedJobs = jobs
-      .filter(job => job.ongoing)
-      .sort(a => (a.active ? -1 : 1));
-
-    const renderJob = ({item}: {item: Job}) => {
-      const nameStyle: any[] = [styles.jobName];
-      if (!item.active) {
-        nameStyle.push(styles.jobInactiveText);
-      }
-      return (
-        <Pressable
-          onPress={() => navigation.navigate('Fridge', {jobId: item.id})}
-          key={item.id}
-          disabled={!item.active}>
-          {({pressed}) => {
-            const btnStyle: any[] = [styles.jobContainer];
-            if (pressed) {
-              btnStyle.push(styles.highlight);
-            }
-            return (
-              <View style={btnStyle}>
-                <Text style={nameStyle}>{item.name}</Text>
-                {item.active ? (
-                  <Text>{item.location}</Text>
-                ) : (
-                  <Text style={styles.jobInactiveText}>Out of Service</Text>
-                )}
-              </View>
-            );
-          }}
-        </Pressable>
-      );
-    };
-
     return (
-      <FlatList
-        data={sortedJobs}
-        renderItem={renderJob}
-        style={styles.flatList}
-      />
+      <Pressable
+        onPress={() => navigation.navigate('Fridge', {jobId: item.id})}
+        key={item.id}
+        disabled={!item.active}>
+        {({pressed}) => {
+          const btnStyle: any[] = [styles.jobContainer];
+          if (pressed) {
+            btnStyle.push(styles.highlight);
+          }
+          return (
+            <View style={btnStyle}>
+              <Text style={nameStyle}>{item.name}</Text>
+              {item.active ? (
+                <Text>{item.location}</Text>
+              ) : (
+                <Text style={styles.jobInactiveText}>Out of Service</Text>
+              )}
+            </View>
+          );
+        }}
+      </Pressable>
     );
   };
 
+  const eastList = (
+    <FlatList
+      data={eastFridges}
+      renderItem={renderJob}
+      style={styles.flatList}
+      ListHeaderComponent={<RegionHeader title="East Oakland" />}
+    />
+  );
+
+  const westList = (
+    <FlatList
+      data={westFridges}
+      renderItem={renderJob}
+      style={styles.flatList}
+      ListHeaderComponent={<RegionHeader title="West Oakland" />}
+    />
+  );
+
   return (
     <View style={[styles.jobList, styles.scrollView]}>
-      {isLoading ? <Loading /> : renderJobs()}
+      {isLoading ? (
+        <Loading />
+      ) : !jobs?.length ? (
+        <Text>No jobs could be found.</Text>
+      ) : (
+        <FlatList data={[eastList, westList]} renderItem={({item}) => item} />
+      )}
     </View>
   );
 };

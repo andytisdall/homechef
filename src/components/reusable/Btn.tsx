@@ -1,5 +1,5 @@
 import {View, StyleSheet, Pressable} from 'react-native';
-import React, {ReactNode} from 'react';
+import {ReactNode} from 'react';
 
 interface BtnProps {
   style?: Record<string, any> | Record<string, any>[];
@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   filter: {
-    borderRadius: 500,
     paddingVertical: 10,
     paddingHorizontal: 15,
+    borderRadius: 50,
     // alignItems: 'center',
     // justifyContent: 'center',
   },
