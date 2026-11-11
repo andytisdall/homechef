@@ -1,18 +1,18 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  tabIconContainer: {margin: 10},
+  tabIconContainer: { margin: 10 },
   tabIcon: {
     flex: 1,
-    height: '100%',
-    resizeMode: 'contain',
-    width: '100%',
+    height: "100%",
+    resizeMode: "contain",
+    width: "100%",
     // opacity: 0.6,
   },
-  tabLabel: {fontSize: 15},
+  tabLabel: { fontSize: 14 },
   focusedText: {
-    fontWeight: '600',
-    textDecorationLine: 'underline',
+    fontWeight: "600",
+    textDecorationLine: "underline",
   },
   focusedIcon: {
     opacity: 1,

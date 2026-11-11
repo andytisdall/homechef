@@ -2,13 +2,13 @@ import {
   launchCamera,
   launchImageLibrary,
   ImagePickerResponse,
-} from 'react-native-image-picker';
-import {Pressable, View, Text, Image} from 'react-native';
-import React, {useState} from 'react';
+} from "react-native-image-picker";
+import { Pressable, View, Text, Image } from "react-native";
+import React, { useState } from "react";
 
-import Btn from './Btn';
-import styles from './styles';
-import Loading from './Loading';
+import Btn from "./Btn";
+import styles from "./styles";
+import Loading from "./Loading";
 
 interface AddPhotoProps {
   setPhoto: React.Dispatch<React.SetStateAction<PhotoFile | undefined>>;
@@ -21,7 +21,7 @@ export interface PhotoFile {
   uri?: string;
 }
 
-const AddPhoto = ({setPhoto, photoFile}: AddPhotoProps) => {
+const AddPhoto = ({ setPhoto, photoFile }: AddPhotoProps) => {
   const [photoLoading, setPhotoLoading] = useState(false);
 
   const setLocalPhoto = (response: ImagePickerResponse) => {
@@ -32,19 +32,18 @@ const AddPhoto = ({setPhoto, photoFile}: AddPhotoProps) => {
         type: photo.type,
         uri: photo.uri,
       });
-      setPhotoLoading(true);
     }
   };
 
   const getPhotoFromLibrary = async () => {
     const photo = await launchImageLibrary({
-      mediaType: 'photo',
+      mediaType: "photo",
     });
     setLocalPhoto(photo);
   };
 
   const takePhoto = async () => {
-    const photo = await launchCamera({mediaType: 'photo'});
+    const photo = await launchCamera({ mediaType: "photo" });
     setLocalPhoto(photo);
   };
 
@@ -53,15 +52,17 @@ const AddPhoto = ({setPhoto, photoFile}: AddPhotoProps) => {
       <View style={styles.photoPreview}>
         <Pressable
           style={styles.photoDelete}
-          onPress={() => setPhoto(undefined)}>
+          onPress={() => setPhoto(undefined)}
+        >
           <Text style={styles.photoDeleteText}>X</Text>
         </Pressable>
         {photoLoading && <Loading />}
         <Image
           style={styles.photoPreviewPhoto}
-          source={{uri: photoFile?.uri}}
+          source={{ uri: photoFile?.uri }}
           alt="preview"
-          onLoad={() => setPhotoLoading(false)}
+          onLoadStart={() => setPhotoLoading(true)}
+          onLoadEnd={() => setPhotoLoading(false)}
         />
       </View>
     );

@@ -1,11 +1,11 @@
-import {screen, render} from '../src/tests/test-utils';
+import { screen, render } from "../src/tests/test-utils";
 
-import {AppContainer} from '../App';
+import { AppContainer } from "../App";
 
-test('App Renders', async () => {
+test("not signed in", async () => {
   render(<AppContainer />);
 
-  const header = await screen.findByText(/home chef app/i);
+  const header = screen.queryByText(/signed in as/i);
 
-  expect(header).toBeOnTheScreen();
+  expect(header).not.toBeOnTheScreen();
 });

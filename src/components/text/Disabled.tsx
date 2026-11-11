@@ -1,10 +1,10 @@
-import {View, Text} from 'react-native';
+import { View, Text } from "react-native";
 
-import styles from './styles';
+import styles from "./styles";
 
 const Disabled = () => {
   return (
-    <View style={styles.fridgeSelect}>
+    <View style={styles.sendText}>
       <Text style={styles.textPreviewText}>
         The CK Text Alert Service is active from 8am - 8pm
       </Text>

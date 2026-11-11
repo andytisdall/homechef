@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">CK Home Chef</string>
-    <string name="default_notification_channel_id">PUSH-LOCAL-NOTIFICATIONS</string>
+    <string name="default_notification_channel_id">home-chef-app</string>
 </resources>

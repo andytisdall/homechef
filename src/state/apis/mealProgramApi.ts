@@ -1,16 +1,19 @@
-import {api} from '../api';
+import { api } from "../api";
 
-interface MealDelivery {
-  numberOfMealsMeat: number;
-  numberOfMealsVeg: number;
-}
+import { MealDelivery } from "@community-kitchens/apiinterfaces";
+
+// interface MealDelivery {
+//   numberOfMealsMeat: number;
+//   numberOfMealsVeg: number;
+//   fridge: string;
+// }
 
 const mealProgramApi = api.injectEndpoints({
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     createMealDelivery: builder.mutation<null, MealDelivery>({
-      query: body => ({url: '/meal-program', method: 'POST', body}),
+      query: (body) => ({ url: "/meal-program", method: "POST", body }),
     }),
   }),
 });
 
-export const {useCreateMealDeliveryMutation} = mealProgramApi;
+export const { useCreateMealDeliveryMutation } = mealProgramApi;

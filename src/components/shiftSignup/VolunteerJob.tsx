@@ -1,44 +1,38 @@
-import {format, utcToZonedTime} from 'date-fns-tz';
-import {useCallback, useMemo} from 'react';
-import {View, Text, Platform, UIManager, FlatList} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { format, utcToZonedTime } from "date-fns-tz";
+import { useCallback, useMemo } from "react";
+import { View, Text, FlatList } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import {SignupStackParamsList} from './Signup';
-import styles from './styles';
-import {Shift} from './VolunteerJobsList';
-import Loading from '../reusable/Loading';
-import Btn from '../reusable/Btn';
-import {useGetShiftsQuery} from '../../state/apis/volunteerApi';
+import { VolunteerShift } from "@community-kitchens/apiinterfaces";
+import { SignupStackParamsList } from "./Signup";
+import styles from "./styles";
+import Loading from "../reusable/Loading";
+import Btn from "../reusable/Btn";
+import { useGetShiftsQuery } from "../../state/apis/volunteerApi";
 
-if (
-  Platform.OS === 'android' &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+type ScreenProps = NativeStackScreenProps<SignupStackParamsList, "Fridge">;
 
-type ScreenProps = NativeStackScreenProps<SignupStackParamsList, 'Fridge'>;
+const VolunteerJob = ({ route, navigation }: ScreenProps) => {
+  const { jobId } = route.params;
 
-const VolunteerJob = ({route, navigation}: ScreenProps) => {
-  const {jobId} = route.params;
-
-  const {data, isLoading} = useGetShiftsQuery();
+  const { data, isLoading } = useGetShiftsQuery();
   const shifts = data?.shifts;
   const jobs = data?.jobs;
-  const job = jobs?.find(j => j.id === jobId);
+  const job = jobs?.find((j) => j.id === jobId);
 
   const renderShift = useCallback(
-    ({item}: {item: Shift}) => {
+    ({ item }: { item: VolunteerShift }) => {
       return (
         <View style={styles.shift} key={item.id}>
           <View style={styles.shiftSignupBtnContainer}>
             {item.open ? (
               <Btn
-                style={styles.signupBtn}
+                style={styles.smallBtn}
                 onPress={() =>
-                  navigation.navigate('ShiftDetail', {shiftId: item.id})
-                }>
-                <Text style={styles.signupBtnText}>Sign Up</Text>
+                  navigation.navigate("ShiftDetail", { shiftId: item.id })
+                }
+              >
+                <Text style={styles.smallBtnText}>Sign Up</Text>
               </Btn>
             ) : (
               <Text style={styles.fullShift}>full</Text>
@@ -47,14 +41,14 @@ const VolunteerJob = ({route, navigation}: ScreenProps) => {
 
           <Text style={styles.jobDate}>
             {format(
-              utcToZonedTime(item.startTime, 'America/Los_Angeles'),
-              'M/d/yy',
+              utcToZonedTime(item.startTime, "America/Los_Angeles"),
+              "M/d/yy",
             )}
           </Text>
           <Text>
             {format(
-              utcToZonedTime(item.startTime, 'America/Los_Angeles'),
-              'eeee',
+              utcToZonedTime(item.startTime, "America/Los_Angeles"),
+              "eeee",
             )}
           </Text>
         </View>
@@ -67,13 +61,13 @@ const VolunteerJob = ({route, navigation}: ScreenProps) => {
     if (!job || !shifts) {
       return;
     }
-    const jobShifts = job.shifts
-      .map(id => shifts[id])
-      .sort((a, b) => (a.startTime > b.startTime ? 1 : -1));
+    const jobShifts = [...job.shifts].sort((a, b) =>
+      a.startTime > b.startTime ? 1 : -1,
+    );
 
     return (
       <FlatList
-        style={[styles.shiftList, styles.flatList]}
+        contentContainerStyle={[styles.shiftList]}
         data={jobShifts}
         renderItem={renderShift}
       />
@@ -93,18 +87,25 @@ const VolunteerJob = ({route, navigation}: ScreenProps) => {
   }
 
   return (
-    <View style={styles.scrollView}>
-      <View style={styles.homeChef}>
-        <View style={styles.jobHeader}>
-          <Text style={[styles.signupTitle, styles.signupMain]}>
-            {job.name}
-          </Text>
-        </View>
-        {!!job.location && <Text style={styles.location}>{job.location}</Text>}
-        {!!job.notes && <Text style={styles.location}>Note: {job.notes}</Text>}
-        {job.active ? renderShifts : <Text>Out of Service</Text>}
+    // <View style={styles.scrollView}>
+    <View style={styles.homeChef}>
+      <View style={styles.jobHeader}>
+        <Text style={[styles.signupTitle, styles.signupMain]}>{job.name}</Text>
       </View>
+      <View style={styles.fridgeInfo}>
+        <View style={styles.address}>
+          {!!job.location && (
+            <Text style={styles.location}>{job.location}</Text>
+          )}
+          {!!job.locationCity && (
+            <Text style={styles.location}>, {job.locationCity}</Text>
+          )}
+        </View>
+        {!!job.notes && <Text style={styles.location}>Note: {job.notes}</Text>}
+      </View>
+      {job.active ? renderShifts : <Text>Out of Service</Text>}
     </View>
+    // </View>
   );
 };
 

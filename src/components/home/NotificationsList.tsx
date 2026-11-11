@@ -1,17 +1,15 @@
-import {FlatList, View, Text} from 'react-native';
+import { FlatList, View, Text } from "react-native";
 
-import {
-  useGetNotificationsQuery,
-  Notification,
-} from '../../state/apis/notificationApi';
-import Loading from '../reusable/Loading';
-import NotificationItem from './NotificationItem';
-import styles from './styles';
+import { useGetNotificationsQuery } from "../../state/apis/notificationApi";
+import Loading from "../reusable/Loading";
+import NotificationItem from "./NotificationItem";
+import styles from "./styles";
+import { Notification } from "@community-kitchens/apiinterfaces";
 
 const NotificationsList = () => {
-  const {data: notifications, isLoading} = useGetNotificationsQuery();
+  const { data: notifications, isLoading } = useGetNotificationsQuery();
 
-  const renderItem = ({item}: {item: Notification}) => (
+  const renderItem = ({ item }: { item: Notification }) => (
     <NotificationItem notification={item} />
   );
 

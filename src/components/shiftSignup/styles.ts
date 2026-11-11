@@ -1,53 +1,49 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import { Dimensions, StyleSheet } from "react-native";
 export const colors = {
-  beige: 'rgb(231, 206, 166)',
-  dark: 'rgb(10, 110, 189)',
-  med: 'rgb(90, 150, 227)',
-  light: 'rgb(161, 194, 241)',
-  green: 'rgba(20, 200, 50, .5)',
-  lightGreen: 'rgba(70, 250, 100, .5)',
-
-  red: 'rgba(200, 70, 70, .5)',
-  grey: 'rgba(100,100,100,.5)',
-  highlight: 'rgba(250,250,250, .5)',
-  white: 'white',
+  beige: "rgb(231, 206, 166)",
+  dark: "rgba(6, 79, 134, 1)",
+  med: "rgb(44, 104, 183)",
+  light: "rgb(161, 194, 241)",
+  green: "rgba(53, 223, 81, 1)",
+  lightGreen: "rgb(70, 250, 100)",
+  yellow: "rgb(255, 255, 181)",
+  red: "rgb(200, 70, 70)",
+  grey: "rgba(100,100,100,.5)",
+  highlight: "rgba(250,250,250, .5)",
+  white: "white",
 };
 
-const height = Dimensions.get('screen').height;
+const height = Dimensions.get("screen").height;
 
 export default StyleSheet.create({
   scrollView: {
-    minHeight: '100%',
+    minHeight: "100%",
   },
-  flatList: {flex: 1},
   homeChef: {
     backgroundColor: colors.light,
-    minHeight: '100%',
-
-    flex: 1,
-    paddingHorizontal: 10,
-    marginBottom: '17%',
+    minHeight: "100%",
+    paddingHorizontal: 20,
+    paddingBottom: 50,
+    width: "100%",
   },
   signupMain: {
-    paddingTop: 30,
+    paddingTop: 10,
   },
-  signupHeader: {
-    alignItems: 'center',
-  },
-  signupTitle: {fontSize: 25, textAlign: 'center'},
-  switch: {marginTop: 10, width: '100%'},
+  signupTitle: { fontSize: 25, textAlign: "center" },
   switchRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    paddingVertical: 10,
   },
   switchTitle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 20,
-    color: 'grey',
+    color: "grey",
   },
-  switchBtn: {flex: 1, paddingHorizontal: 20},
-  switchText: {textAlign: 'center', padding: 5},
+  switchBtn: { flex: 1, paddingHorizontal: 20 },
+  switchText: { textAlign: "center", padding: 5 },
   navBtn: {
     backgroundColor: colors.dark,
     marginBottom: 30,
@@ -56,12 +52,12 @@ export default StyleSheet.create({
     padding: 20,
     color: colors.white,
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   viewActive: {
-    transform: [{scale: 1.1}],
+    transform: [{ scale: 1.1 }],
   },
-  jobList: {paddingHorizontal: 10, paddingBottom: '20%', width: '100%'},
+  jobList: { paddingBottom: "20%", height: "100%" },
   jobContainer: {
     borderBottomColor: colors.grey,
     borderBottomWidth: 1,
@@ -70,7 +66,7 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
   },
   jobHeader: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingHorizontal: 5,
   },
   jobName: {
@@ -85,47 +81,52 @@ export default StyleSheet.create({
     marginRight: 20,
   },
   shift: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 10,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     borderBottomWidth: 1,
     paddingBottom: 5,
-    alignItems: 'center',
+    alignItems: "center",
   },
   shiftSignupBtnContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '35%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "35%",
   },
   shiftList: {
     padding: 10,
+    paddingBottom: 300,
   },
   location: {
     marginBottom: 20,
-    marginLeft: 5,
     fontSize: 15,
   },
+  address: {
+    flexDirection: "row",
+  },
   signupBtn: {
-    backgroundColor: colors.dark,
+    backgroundColor: colors.med,
+    borderRadius: 10,
   },
   signupBtnText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    padding: 10,
+    textAlign: "center",
     fontSize: 17,
   },
   jobDate: {
     fontSize: 17,
-    width: '35%',
+    width: "35%",
   },
 
   jobInactiveText: {
-    color: 'rgb(100,100,100)',
+    color: colors.grey,
   },
   arrowRotated: {
-    transform: [{rotate: '90deg'}],
+    transform: [{ rotate: "90deg" }],
   },
-  calendarDate: {flex: 1},
+  calendarDate: { flex: 1 },
   calendarLink: {
     padding: 2,
     backgroundColor: colors.green,
@@ -134,95 +135,128 @@ export default StyleSheet.create({
   },
   calendarLinkNumber: {
     fontSize: height / 45,
-    textAlign: 'center',
+    textAlign: "center",
   },
-  calendarLinkText: {fontSize: height / 65, textAlign: 'center'},
-  calendarLinkInactive: {backgroundColor: colors.red},
-  calendarLinkPressed: {backgroundColor: colors.lightGreen},
+  calendarLinkText: { fontSize: height / 80, textAlign: "center" },
+  calendarLinkInactive: { backgroundColor: colors.grey },
+  calendarLinkPressed: { backgroundColor: colors.lightGreen },
   signupDetailInfo: {
     paddingHorizontal: 5,
     marginBottom: 25,
-    paddingVertical: 10,
+    paddingVertical: 15,
+    borderBottomColor: colors.grey,
+    borderBottomWidth: 1,
   },
   signupField: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 10,
   },
 
-  signupFieldText: {paddingLeft: 10, flexShrink: 1},
+  signupFieldText: { paddingLeft: 10, flexShrink: 1 },
   fullShift: {
     paddingVertical: 5,
     paddingHorizontal: 20,
-    backgroundColor: 'rgb(150,150,150)',
-    borderWidth: 1,
-    borderRadius: 15,
-    overflow: 'hidden',
+    backgroundColor: colors.grey,
   },
   mealCountInput: {
     fontSize: 20,
     marginLeft: 25,
     width: 75,
-    backgroundColor: 'white',
-    textAlign: 'center',
+    backgroundColor: "white",
+    textAlign: "center",
     borderWidth: 2,
-    borderColor: 'rgb(100,100,250)',
+    borderColor: colors.dark,
   },
   checkbox: {
     paddingLeft: 15,
   },
   submitContainer: {
-    alignItems: 'center',
+    alignItems: "center",
+    marginVertical: 20,
   },
   submitBtn: {
     backgroundColor: colors.dark,
+    borderRadius: 10,
+  },
+  submitBtnText: {
+    fontWeight: "600",
+    padding: 10,
+    color: "white",
+    fontSize: 18,
   },
   disabled: {
     backgroundColor: colors.grey,
   },
   confirmNav: {
     marginTop: 25,
-    alignItems: 'center',
   },
   confirmDetail: {
     marginVertical: 20,
   },
   confirmLabel: {
-    fontWeight: '600',
-    marginRight: 20,
+    fontWeight: "600",
     fontSize: 20,
   },
-  confirmText: {fontSize: 20, flexShrink: 1},
+  confirmText: { fontSize: 18 },
   confirmLine: {
-    flexDirection: 'row',
+    flexDirection: "column",
     marginVertical: 5,
   },
-  highlight: {backgroundColor: colors.highlight},
+  highlight: { backgroundColor: colors.highlight },
   invalidDate: {
-    backgroundColor: 'rgb(150,150,150)',
+    backgroundColor: colors.grey,
   },
-  calendarContainer: {
-    paddingBottom: 150,
-  },
-  jobSubHeader: {
-    textAlign: 'center',
-    fontSize: 18,
-    textDecorationLine: 'underline',
+  calendarContainer: { minHeight: "100%" },
+  dateDetailHeader: {
+    alignItems: "center",
+    marginTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
   },
   mealEntryText: {
-    fontWeight: '600',
+    fontWeight: "600",
     fontSize: 20,
     paddingBottom: 5,
   },
   signupNotes: {
     marginTop: 10,
-    width: '90%',
-    alignItems: 'center',
+    width: "90%",
+    alignItems: "center",
   },
   regionHeader: {
     fontSize: 20,
-    textAlign: 'center',
-    fontWeight: '700',
+    textAlign: "center",
+    fontWeight: "700",
     marginTop: 20,
+    textDecorationLine: "underline",
   },
+  fridgeInfo: {
+    paddingLeft: 15,
+    paddingTop: 5,
+    borderBottomWidth: 1,
+  },
+  fridgeList: {
+    marginBottom: 10,
+  },
+  deliverToKitchen: {
+    marginLeft: 20,
+  },
+
+  confirmText2: {
+    fontSize: 18,
+    fontStyle: "italic",
+  },
+  confirmTextHeader: {
+    fontSize: 22,
+    fontWeight: "600",
+  },
+  smallBtn: {
+    backgroundColor: colors.dark,
+    borderRadius: 10,
+  },
+  smallBtnText: {
+    color: "white",
+  },
+  hour: { marginLeft: 15 },
 });

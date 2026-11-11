@@ -1,10 +1,34 @@
-import {View, Text} from 'react-native';
+import { View, Text, Linking } from "react-native";
 
-import styles from './styles';
-import {useGetUserInfoQuery} from '../../state/apis/authApi';
+import styles from "./styles";
+import { useGetUserInfoQuery, useGetUserQuery } from "../../state/apis/authApi";
+import Btn from "../reusable/Btn";
 
 const Help = () => {
-  const {data: userInfo} = useGetUserInfoQuery();
+  const { data: user } = useGetUserQuery();
+  const { data: userInfo } = useGetUserInfoQuery();
+
+  const userIsHomeChef = userInfo?.homeChefStatus === "Active";
+  const userHasTextPermission = userIsHomeChef || user?.busDriver;
+
+  const linkToPortal = () =>
+    Linking.openURL("https://portal.ckoakland.org/forms/volunteer");
+
+  if (!userHasTextPermission) {
+    return (
+      <View style={styles.homeInfo}>
+        <Text style={styles.homeInfoTitle}>
+          You must be a CK Home Chef and/or a CK Delivery Driver to use this
+          app.
+        </Text>
+        <Btn onPress={linkToPortal} style={styles.signOutBtn}>
+          <Text style={styles.signOutBtnText}>
+            Go to the CK Volunteer Portal
+          </Text>
+        </Btn>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.homeInfo}>
@@ -13,15 +37,15 @@ const Help = () => {
       </Text>
       <View style={styles.homeInfoItems}>
         <Text style={styles.homeInfoText}>
-          {'\u2022 Send a Text Alert about your Town Fridge delivery'}
+          {"\u2022 Send a Text Alert about your Town Fridge delivery"}
         </Text>
-        {userInfo?.homeChefStatus === 'Active' && (
+        {userIsHomeChef && (
           <>
             <Text style={styles.homeInfoText}>
-              {'\u2022 Sign Up for Town Fridge Deliveries'}
+              {"\u2022 Sign Up for Town Fridge Deliveries"}
             </Text>
             <Text style={styles.homeInfoText}>
-              {'\u2022 See and edit your upcoming and past deliveries'}
+              {"\u2022 See and edit your upcoming and past deliveries"}
             </Text>
           </>
         )}

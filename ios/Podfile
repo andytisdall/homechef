@@ -47,25 +47,32 @@ end
 
 target 'homechef' do
   config = use_native_modules!
-
+use_modular_headers!
   use_react_native!(
     :path => config[:reactNativePath],
 
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'homechefTests' do
-    inherit! :complete
-    # Pods for testing
-  end
+  pod 'react-native-compressor', :path => '../node_modules/react-native-compressor'
+
+
 
   post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-
+    # installer.pods_project.build_configurations.each do |config|
+    # config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    # end
+    installer.pods_project.targets.each do |target|
+      if target.name == 'fmt'
+        target.build_configurations.each do |config|
+          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        end
+      end
+    end
   end
 end

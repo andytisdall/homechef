@@ -1,0 +1,788 @@
+diff --git a/node_modules/react-native-notifications/lib/android/app/build.gradle b/node_modules/react-native-notifications/lib/android/app/build.gradle
+index 5ea984c..a8db1fa 100644
+--- a/node_modules/react-native-notifications/lib/android/app/build.gradle
++++ b/node_modules/react-native-notifications/lib/android/app/build.gradle
+@@ -55,6 +55,10 @@ def supportsNamespace() {
+ }
+ 
+ android {
++    buildFeatures {
++        buildConfig = true
++    }
++    
+     if (supportsNamespace()) {
+         namespace "com.wix.reactnativenotifications"
+ 
+@@ -86,7 +90,7 @@ android {
+     buildTypes {
+         release {
+             minifyEnabled false
+-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+         }
+         debug {
+             debuggable true
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/results.bin b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/results.bin
+new file mode 100644
+index 0000000..d43dfc6
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/results.bin
+@@ -0,0 +1 @@
++o/bundleLibRuntimeToDirReactNative60Debug
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/BuildConfig.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/BuildConfig.dex
+new file mode 100644
+index 0000000..9327b17
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/BuildConfig.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/Defs.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/Defs.dex
+new file mode 100644
+index 0000000..fc242b3
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/Defs.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/NotificationManagerCompatFacade.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/NotificationManagerCompatFacade.dex
+new file mode 100644
+index 0000000..c867787
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/NotificationManagerCompatFacade.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/RNNotificationsModule.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/RNNotificationsModule.dex
+new file mode 100644
+index 0000000..fb3b9c7
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/RNNotificationsModule.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/RNNotificationsPackage.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/RNNotificationsPackage.dex
+new file mode 100644
+index 0000000..90b0592
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/RNNotificationsPackage.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLaunchHelper.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLaunchHelper.dex
+new file mode 100644
+index 0000000..e9ca2ab
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLaunchHelper.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.dex
+new file mode 100644
+index 0000000..9de265a
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacade.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacade.dex
+new file mode 100644
+index 0000000..714c0e4
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacade.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.dex
+new file mode 100644
+index 0000000..482fa88
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/InitialNotificationHolder.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/InitialNotificationHolder.dex
+new file mode 100644
+index 0000000..913c182
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/InitialNotificationHolder.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/JsIOHelper.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/JsIOHelper.dex
+new file mode 100644
+index 0000000..f57f97a
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/JsIOHelper.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/NotificationIntentAdapter.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/NotificationIntentAdapter.dex
+new file mode 100644
+index 0000000..be2ea2b
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/NotificationIntentAdapter.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ProxyService.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ProxyService.dex
+new file mode 100644
+index 0000000..fd678ac
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ProxyService.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.dex
+new file mode 100644
+index 0000000..50ede41
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.dex
+new file mode 100644
+index 0000000..8dfb3d6
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/INotificationChannel.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/INotificationChannel.dex
+new file mode 100644
+index 0000000..2693d36
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/INotificationChannel.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/INotificationsApplication.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/INotificationsApplication.dex
+new file mode 100644
+index 0000000..b9b32e7
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/INotificationsApplication.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.dex
+new file mode 100644
+index 0000000..2a5e146
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/IPushNotification.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/IPushNotification.dex
+new file mode 100644
+index 0000000..3a46af8
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/IPushNotification.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/NotificationChannel.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/NotificationChannel.dex
+new file mode 100644
+index 0000000..fab14a7
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/NotificationChannel.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.dex
+new file mode 100644
+index 0000000..27e6758
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotification$1.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotification$1.dex
+new file mode 100644
+index 0000000..dd4b9c5
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotification$1.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotification.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotification.dex
+new file mode 100644
+index 0000000..f29bb78
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotification.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotificationProps.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotificationProps.dex
+new file mode 100644
+index 0000000..18fd50d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notification/PushNotificationProps.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.dex
+new file mode 100644
+index 0000000..171705c
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.dex
+new file mode 100644
+index 0000000..24c79e6
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.dex
+new file mode 100644
+index 0000000..c4ec825
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.dex
+new file mode 100644
+index 0000000..ec35dd6
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.dex
+new file mode 100644
+index 0000000..165761f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmToken.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmToken.dex
+new file mode 100644
+index 0000000..48a8915
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/FcmToken.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/IFcmToken.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/IFcmToken.dex
+new file mode 100644
+index 0000000..1ba540b
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/IFcmToken.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.dex
+new file mode 100644
+index 0000000..50098ed
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.dex b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.dex
+new file mode 100644
+index 0000000..0242faf
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_dex/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.dex differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_global-synthetics/com/wix/reactnativenotifications/fcm/FcmToken$$InternalSyntheticLambda$2$209715167af3bf9831ecd93d8e889d65a232f8c868987482fde84ab74be5ecc3$0.globals b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_global-synthetics/com/wix/reactnativenotifications/fcm/FcmToken$$InternalSyntheticLambda$2$209715167af3bf9831ecd93d8e889d65a232f8c868987482fde84ab74be5ecc3$0.globals
+new file mode 100644
+index 0000000..cf6ce7d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/bundleLibRuntimeToDirReactNative60Debug_global-synthetics/com/wix/reactnativenotifications/fcm/FcmToken$$InternalSyntheticLambda$2$209715167af3bf9831ecd93d8e889d65a232f8c868987482fde84ab74be5ecc3$0.globals differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/desugar_graph.bin b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/desugar_graph.bin
+new file mode 100644
+index 0000000..7818de3
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/.transforms/ed7da4f6a822c9d11e0be9cebf2b573c/transformed/bundleLibRuntimeToDirReactNative60Debug/desugar_graph.bin differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/generated/source/buildConfig/reactNative60/debug/com/wix/reactnativenotifications/BuildConfig.java b/node_modules/react-native-notifications/lib/android/app/build/generated/source/buildConfig/reactNative60/debug/com/wix/reactnativenotifications/BuildConfig.java
+new file mode 100644
+index 0000000..994ee1e
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/generated/source/buildConfig/reactNative60/debug/com/wix/reactnativenotifications/BuildConfig.java
+@@ -0,0 +1,11 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package com.wix.reactnativenotifications;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "com.wix.reactnativenotifications";
++  public static final String BUILD_TYPE = "debug";
++  public static final String FLAVOR = "reactNative60";
++}
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/aapt_friendly_merged_manifests/reactNative60Debug/processReactNative60DebugManifest/aapt/AndroidManifest.xml b/node_modules/react-native-notifications/lib/android/app/build/intermediates/aapt_friendly_merged_manifests/reactNative60Debug/processReactNative60DebugManifest/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..e541a6d
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/aapt_friendly_merged_manifests/reactNative60Debug/processReactNative60DebugManifest/aapt/AndroidManifest.xml
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.wix.reactnativenotifications" >
++
++    <uses-sdk android:minSdkVersion="24" />
++
++    <application>
++
++<!--          A proxy-service that gives the library an opportunity to do some work before launching/resuming the actual application task. -->
++        <service android:name="com.wix.reactnativenotifications.core.ProxyService" />
++        <service
++            android:name="com.wix.reactnativenotifications.fcm.FcmInstanceIdListenerService"
++            android:exported="true" >
++            <intent-filter>
++                <action android:name="com.google.firebase.MESSAGING_EVENT" />
++                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
++            </intent-filter>
++        </service>
++        <service
++            android:name="com.wix.reactnativenotifications.fcm.FcmInstanceIdRefreshHandlerService"
++            android:exported="false"
++            android:permission="android.permission.BIND_JOB_SERVICE" />
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/aapt_friendly_merged_manifests/reactNative60Debug/processReactNative60DebugManifest/aapt/output-metadata.json b/node_modules/react-native-notifications/lib/android/app/build/intermediates/aapt_friendly_merged_manifests/reactNative60Debug/processReactNative60DebugManifest/aapt/output-metadata.json
+new file mode 100644
+index 0000000..30ff200
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/aapt_friendly_merged_manifests/reactNative60Debug/processReactNative60DebugManifest/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "com.wix.reactnativenotifications",
++  "variantName": "reactNative60Debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/aar_metadata/reactNative60Debug/writeReactNative60DebugAarMetadata/aar-metadata.properties b/node_modules/react-native-notifications/lib/android/app/build/intermediates/aar_metadata/reactNative60Debug/writeReactNative60DebugAarMetadata/aar-metadata.properties
+new file mode 100644
+index 0000000..b4c821b
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/aar_metadata/reactNative60Debug/writeReactNative60DebugAarMetadata/aar-metadata.properties
+@@ -0,0 +1,7 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=37
++minCompileMinorSdk=0
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
++coreLibraryDesugaringEnabled=false
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/android_res_source_set_path_map/reactNative60Debug/mapReactNative60DebugSourceSetPaths/file-map.txt b/node_modules/react-native-notifications/lib/android/app/build/intermediates/android_res_source_set_path_map/reactNative60Debug/mapReactNative60DebugSourceSetPaths/file-map.txt
+new file mode 100644
+index 0000000..3518400
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/android_res_source_set_path_map/reactNative60Debug/mapReactNative60DebugSourceSetPaths/file-map.txt
+@@ -0,0 +1,11 @@
++com.wix.reactnativenotifications.react-native-notifications-reactNative60-0 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/build/generated/res/pngs/reactNative60/debug
++com.wix.reactnativenotifications.react-native-notifications-updated_navigation_xml-1 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/build/generated/updated_navigation_xml/reactNative60Debug
++com.wix.reactnativenotifications.react-native-notifications-mergeReactNative60DebugResources-2 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/mergeReactNative60DebugResources/merged.dir
++com.wix.reactnativenotifications.react-native-notifications-mergeReactNative60DebugResources-3 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/mergeReactNative60DebugResources/stripped.dir
++com.wix.reactnativenotifications.react-native-notifications-reactNative60Debug-4 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/build/intermediates/merged_res/reactNative60Debug/mergeReactNative60DebugResources
++com.wix.reactnativenotifications.react-native-notifications-reactNative60Debug-5 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/build/intermediates/packaged_res/reactNative60Debug/packageReactNative60DebugResources
++com.wix.reactnativenotifications.react-native-notifications-debug-6 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/debug/res
++com.wix.reactnativenotifications.react-native-notifications-main-7 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/res
++com.wix.reactnativenotifications.react-native-notifications-reactNative60-8 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60/res
++com.wix.reactnativenotifications.react-native-notifications-reactNative60Debug-9 /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60Debug/res
++gradleHome-0 /Users/theghoul/.gradle
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/annotation_processor_list/reactNative60Debug/javaPreCompileReactNative60Debug/annotationProcessors.json b/node_modules/react-native-notifications/lib/android/app/build/intermediates/annotation_processor_list/reactNative60Debug/javaPreCompileReactNative60Debug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/annotation_processor_list/reactNative60Debug/javaPreCompileReactNative60Debug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_library_classes_jar/reactNative60Debug/bundleLibCompileToJarReactNative60Debug/classes.jar b/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_library_classes_jar/reactNative60Debug/bundleLibCompileToJarReactNative60Debug/classes.jar
+new file mode 100644
+index 0000000..af27a1d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_library_classes_jar/reactNative60Debug/bundleLibCompileToJarReactNative60Debug/classes.jar differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_r_class_jar/reactNative60Debug/generateReactNative60DebugRFile/R.jar b/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_r_class_jar/reactNative60Debug/generateReactNative60DebugRFile/R.jar
+new file mode 100644
+index 0000000..d50b33d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_r_class_jar/reactNative60Debug/generateReactNative60DebugRFile/R.jar differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_symbol_list/reactNative60Debug/generateReactNative60DebugRFile/R.txt b/node_modules/react-native-notifications/lib/android/app/build/intermediates/compile_symbol_list/reactNative60Debug/generateReactNative60DebugRFile/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/mergeReactNative60DebugAssets/merger.xml b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/mergeReactNative60DebugAssets/merger.xml
+new file mode 100644
+index 0000000..bb7c2cc
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/mergeReactNative60DebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/assets"/></dataSet><dataSet config="reactNative60" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60/assets"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/debug/assets"/></dataSet><dataSet config="variant" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60Debug/assets"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/mergeReactNative60DebugJniLibFolders/merger.xml b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/mergeReactNative60DebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..19433dd
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/mergeReactNative60DebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/jniLibs"/></dataSet><dataSet config="reactNative60" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/debug/jniLibs"/></dataSet><dataSet config="variant" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60Debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/packageReactNative60DebugResources/compile-file-map.properties b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/packageReactNative60DebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..8cf81e1
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/packageReactNative60DebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Mon Oct 19 17:50:41 PDT 2026
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/packageReactNative60DebugResources/merger.xml b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/packageReactNative60DebugResources/merger.xml
+new file mode 100644
+index 0000000..28078ff
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/incremental/reactNative60Debug/packageReactNative60DebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~:!&lt;dir>navigation"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="reactNative60$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="reactNative60" generated-set="reactNative60$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~:!&lt;dir>navigation"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~:!&lt;dir>navigation"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~:!&lt;dir>navigation"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="variant$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60Debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="variant" generated-set="variant$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~:!&lt;dir>navigation"><source path="/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/reactNative60Debug/res"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/BuildConfig.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/BuildConfig.class
+new file mode 100644
+index 0000000..57df844
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/BuildConfig.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/Defs.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/Defs.class
+new file mode 100644
+index 0000000..3d5d0e1
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/Defs.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/NotificationManagerCompatFacade.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/NotificationManagerCompatFacade.class
+new file mode 100644
+index 0000000..f0f4a4f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/NotificationManagerCompatFacade.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/RNNotificationsModule.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/RNNotificationsModule.class
+new file mode 100644
+index 0000000..d881c46
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/RNNotificationsModule.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/RNNotificationsPackage.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/RNNotificationsPackage.class
+new file mode 100644
+index 0000000..eb67235
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/RNNotificationsPackage.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLaunchHelper.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLaunchHelper.class
+new file mode 100644
+index 0000000..1b27d41
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLaunchHelper.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.class
+new file mode 100644
+index 0000000..b57a1b0
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacade.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacade.class
+new file mode 100644
+index 0000000..e10b487
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacade.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.class
+new file mode 100644
+index 0000000..5cb9f67
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/InitialNotificationHolder.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/InitialNotificationHolder.class
+new file mode 100644
+index 0000000..f166bc8
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/InitialNotificationHolder.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/JsIOHelper.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/JsIOHelper.class
+new file mode 100644
+index 0000000..c62380f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/JsIOHelper.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/NotificationIntentAdapter.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/NotificationIntentAdapter.class
+new file mode 100644
+index 0000000..de493bf
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/NotificationIntentAdapter.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ProxyService.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ProxyService.class
+new file mode 100644
+index 0000000..30cfbed
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ProxyService.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.class
+new file mode 100644
+index 0000000..b944aa2
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.class
+new file mode 100644
+index 0000000..9cae55f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/INotificationChannel.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/INotificationChannel.class
+new file mode 100644
+index 0000000..9a85cb9
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/INotificationChannel.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/INotificationsApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/INotificationsApplication.class
+new file mode 100644
+index 0000000..dd3a739
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/INotificationsApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.class
+new file mode 100644
+index 0000000..734e545
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/IPushNotification.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/IPushNotification.class
+new file mode 100644
+index 0000000..380b46f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/IPushNotification.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/NotificationChannel.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/NotificationChannel.class
+new file mode 100644
+index 0000000..d8c2b81
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/NotificationChannel.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.class
+new file mode 100644
+index 0000000..719ef7d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotification$1.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotification$1.class
+new file mode 100644
+index 0000000..74f5cff
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotification$1.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotification.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotification.class
+new file mode 100644
+index 0000000..66ddbe5
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotification.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotificationProps.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotificationProps.class
+new file mode 100644
+index 0000000..af9ff5c
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notification/PushNotificationProps.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.class
+new file mode 100644
+index 0000000..452809e
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.class
+new file mode 100644
+index 0000000..fb5c06c
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.class
+new file mode 100644
+index 0000000..14f4a5d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.class
+new file mode 100644
+index 0000000..6e37ea5
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.class
+new file mode 100644
+index 0000000..65b384e
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmToken.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmToken.class
+new file mode 100644
+index 0000000..cd04b04
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/FcmToken.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/IFcmToken.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/IFcmToken.class
+new file mode 100644
+index 0000000..02c97a9
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/IFcmToken.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.class
+new file mode 100644
+index 0000000..bf12d9d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.class
+new file mode 100644
+index 0000000..c22a589
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/javac/reactNative60Debug/compileReactNative60DebugJavaWithJavac/classes/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/local_only_symbol_list/reactNative60Debug/parseReactNative60DebugLocalResources/R-def.txt b/node_modules/react-native-notifications/lib/android/app/build/intermediates/local_only_symbol_list/reactNative60Debug/parseReactNative60DebugLocalResources/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/local_only_symbol_list/reactNative60Debug/parseReactNative60DebugLocalResources/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/manifest_merge_blame_file/reactNative60Debug/processReactNative60DebugManifest/manifest-merger-blame-reactNative60-debug-report.txt b/node_modules/react-native-notifications/lib/android/app/build/intermediates/manifest_merge_blame_file/reactNative60Debug/processReactNative60DebugManifest/manifest-merger-blame-reactNative60-debug-report.txt
+new file mode 100644
+index 0000000..adf9666
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/manifest_merge_blame_file/reactNative60Debug/processReactNative60DebugManifest/manifest-merger-blame-reactNative60-debug-report.txt
+@@ -0,0 +1,42 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="com.wix.reactnativenotifications" >
++4
++5    <uses-sdk android:minSdkVersion="24" />
++5-->INJECTED
++5-->INJECTED
++6
++7    <application>
++7-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:5:5-25:19
++8
++9<!--          A proxy-service that gives the library an opportunity to do some work before launching/resuming the actual application task. -->
++10        <service android:name="com.wix.reactnativenotifications.core.ProxyService" />
++10-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:10:9-53
++10-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:10:18-51
++11        <service
++11-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:12:9-19:19
++12            android:name="com.wix.reactnativenotifications.fcm.FcmInstanceIdListenerService"
++12-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:13:13-61
++13            android:exported="true" >
++13-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:14:13-36
++14            <intent-filter>
++14-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:15:13-18:29
++15                <action android:name="com.google.firebase.MESSAGING_EVENT" />
++15-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:16:17-78
++15-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:16:25-75
++16                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
++16-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:17:17-80
++16-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:17:25-77
++17            </intent-filter>
++18        </service>
++19        <service
++19-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:21:9-24:72
++20            android:name="com.wix.reactnativenotifications.fcm.FcmInstanceIdRefreshHandlerService"
++20-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:22:13-67
++21            android:exported="false"
++21-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:23:13-37
++22            android:permission="android.permission.BIND_JOB_SERVICE" />
++22-->/Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:24:13-69
++23    </application>
++24
++25</manifest>
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/merged_manifest/reactNative60Debug/processReactNative60DebugManifest/AndroidManifest.xml b/node_modules/react-native-notifications/lib/android/app/build/intermediates/merged_manifest/reactNative60Debug/processReactNative60DebugManifest/AndroidManifest.xml
+new file mode 100644
+index 0000000..e541a6d
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/merged_manifest/reactNative60Debug/processReactNative60DebugManifest/AndroidManifest.xml
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.wix.reactnativenotifications" >
++
++    <uses-sdk android:minSdkVersion="24" />
++
++    <application>
++
++<!--          A proxy-service that gives the library an opportunity to do some work before launching/resuming the actual application task. -->
++        <service android:name="com.wix.reactnativenotifications.core.ProxyService" />
++        <service
++            android:name="com.wix.reactnativenotifications.fcm.FcmInstanceIdListenerService"
++            android:exported="true" >
++            <intent-filter>
++                <action android:name="com.google.firebase.MESSAGING_EVENT" />
++                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
++            </intent-filter>
++        </service>
++        <service
++            android:name="com.wix.reactnativenotifications.fcm.FcmInstanceIdRefreshHandlerService"
++            android:exported="false"
++            android:permission="android.permission.BIND_JOB_SERVICE" />
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/navigation_json/reactNative60Debug/extractDeepLinksReactNative60Debug/navigation.json b/node_modules/react-native-notifications/lib/android/app/build/intermediates/navigation_json/reactNative60Debug/extractDeepLinksReactNative60Debug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/navigation_json/reactNative60Debug/extractDeepLinksReactNative60Debug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/nested_resources_validation_report/reactNative60Debug/generateReactNative60DebugResources/nestedResourcesValidationReport.txt b/node_modules/react-native-notifications/lib/android/app/build/intermediates/nested_resources_validation_report/reactNative60Debug/generateReactNative60DebugResources/nestedResourcesValidationReport.txt
+new file mode 100644
+index 0000000..08f4ebe
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/nested_resources_validation_report/reactNative60Debug/generateReactNative60DebugResources/nestedResourcesValidationReport.txt
+@@ -0,0 +1 @@
++0 Warning/Error
+\ No newline at end of file
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/BuildConfig.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/BuildConfig.class
+new file mode 100644
+index 0000000..57df844
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/BuildConfig.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/Defs.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/Defs.class
+new file mode 100644
+index 0000000..3d5d0e1
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/Defs.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/NotificationManagerCompatFacade.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/NotificationManagerCompatFacade.class
+new file mode 100644
+index 0000000..f0f4a4f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/NotificationManagerCompatFacade.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/RNNotificationsModule.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/RNNotificationsModule.class
+new file mode 100644
+index 0000000..d881c46
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/RNNotificationsModule.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/RNNotificationsPackage.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/RNNotificationsPackage.class
+new file mode 100644
+index 0000000..eb67235
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/RNNotificationsPackage.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLaunchHelper.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLaunchHelper.class
+new file mode 100644
+index 0000000..1b27d41
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLaunchHelper.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.class
+new file mode 100644
+index 0000000..b57a1b0
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacade$AppVisibilityListener.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacade.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacade.class
+new file mode 100644
+index 0000000..e10b487
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacade.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.class
+new file mode 100644
+index 0000000..5cb9f67
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/AppLifecycleFacadeHolder.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/InitialNotificationHolder.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/InitialNotificationHolder.class
+new file mode 100644
+index 0000000..f166bc8
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/InitialNotificationHolder.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/JsIOHelper.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/JsIOHelper.class
+new file mode 100644
+index 0000000..c62380f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/JsIOHelper.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/NotificationIntentAdapter.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/NotificationIntentAdapter.class
+new file mode 100644
+index 0000000..de493bf
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/NotificationIntentAdapter.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ProxyService.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ProxyService.class
+new file mode 100644
+index 0000000..30cfbed
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ProxyService.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.class
+new file mode 100644
+index 0000000..b944aa2
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade$1.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.class
+new file mode 100644
+index 0000000..9cae55f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/ReactAppLifecycleFacade.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/INotificationChannel.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/INotificationChannel.class
+new file mode 100644
+index 0000000..9a85cb9
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/INotificationChannel.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/INotificationsApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/INotificationsApplication.class
+new file mode 100644
+index 0000000..dd3a739
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/INotificationsApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.class
+new file mode 100644
+index 0000000..734e545
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/IPushNotification$InvalidNotificationException.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/IPushNotification.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/IPushNotification.class
+new file mode 100644
+index 0000000..380b46f
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/IPushNotification.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/NotificationChannel.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/NotificationChannel.class
+new file mode 100644
+index 0000000..d8c2b81
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/NotificationChannel.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.class
+new file mode 100644
+index 0000000..719ef7d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/NotificationChannelProps.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotification$1.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotification$1.class
+new file mode 100644
+index 0000000..74f5cff
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotification$1.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotification.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotification.class
+new file mode 100644
+index 0000000..66ddbe5
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotification.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotificationProps.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotificationProps.class
+new file mode 100644
+index 0000000..af9ff5c
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notification/PushNotificationProps.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.class
+new file mode 100644
+index 0000000..452809e
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/INotificationsDrawerApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.class
+new file mode 100644
+index 0000000..fb5c06c
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/IPushNotificationsDrawer.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.class
+new file mode 100644
+index 0000000..14f4a5d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/core/notificationdrawer/PushNotificationsDrawer.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.class
+new file mode 100644
+index 0000000..6e37ea5
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmInstanceIdListenerService.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.class
+new file mode 100644
+index 0000000..65b384e
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmInstanceIdRefreshHandlerService.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmToken.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmToken.class
+new file mode 100644
+index 0000000..cd04b04
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/FcmToken.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/IFcmToken.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/IFcmToken.class
+new file mode 100644
+index 0000000..02c97a9
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/IFcmToken.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.class
+new file mode 100644
+index 0000000..bf12d9d
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/IFcmTokenListenerApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.class b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.class
+new file mode 100644
+index 0000000..c22a589
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/intermediates/runtime_library_classes_dir/reactNative60Debug/bundleLibRuntimeToDirReactNative60Debug/com/wix/reactnativenotifications/fcm/INotificationsFcmApplication.class differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/intermediates/symbol_list_with_package_name/reactNative60Debug/generateReactNative60DebugRFile/package-aware-r.txt b/node_modules/react-native-notifications/lib/android/app/build/intermediates/symbol_list_with_package_name/reactNative60Debug/generateReactNative60DebugRFile/package-aware-r.txt
+new file mode 100644
+index 0000000..2d78319
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/intermediates/symbol_list_with_package_name/reactNative60Debug/generateReactNative60DebugRFile/package-aware-r.txt
+@@ -0,0 +1 @@
++com.wix.reactnativenotifications
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/outputs/logs/manifest-merger-reactNative60-debug-report.txt b/node_modules/react-native-notifications/lib/android/app/build/outputs/logs/manifest-merger-reactNative60-debug-report.txt
+new file mode 100644
+index 0000000..c4ef34d
+--- /dev/null
++++ b/node_modules/react-native-notifications/lib/android/app/build/outputs/logs/manifest-merger-reactNative60-debug-report.txt
+@@ -0,0 +1,46 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:2:1-27:12
++INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:2:1-27:12
++	package
++		INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml
++	xmlns:android
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:3:5-63
++application
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:5:5-25:19
++service#com.wix.reactnativenotifications.core.ProxyService
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:10:9-53
++	android:name
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:10:18-51
++service#com.wix.reactnativenotifications.fcm.FcmInstanceIdListenerService
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:12:9-19:19
++	android:exported
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:14:13-36
++	android:name
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:13:13-61
++intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT+action:name:com.google.firebase.MESSAGING_EVENT
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:15:13-18:29
++action#com.google.firebase.MESSAGING_EVENT
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:16:17-78
++	android:name
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:16:25-75
++action#com.google.firebase.INSTANCE_ID_EVENT
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:17:17-80
++	android:name
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:17:25-77
++service#com.wix.reactnativenotifications.fcm.FcmInstanceIdRefreshHandlerService
++ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:21:9-24:72
++	android:exported
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:23:13-37
++	android:permission
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:24:13-69
++	android:name
++		ADDED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml:22:13-67
++uses-sdk
++INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml reason: use-sdk injection requested
++INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml
++INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml
++	android:targetSdkVersion
++		INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml
++	android:minSdkVersion
++		INJECTED from /Users/theghoul/ck/code/homechef/node_modules/react-native-notifications/lib/android/app/src/main/AndroidManifestNew.xml
+diff --git a/node_modules/react-native-notifications/lib/android/app/build/tmp/compileReactNative60DebugJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-notifications/lib/android/app/build/tmp/compileReactNative60DebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..5781ddb
+Binary files /dev/null and b/node_modules/react-native-notifications/lib/android/app/build/tmp/compileReactNative60DebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/react-native-notifications/lib/android/app/src/main/java/com/wix/reactnativenotifications/fcm/FcmToken.java b/node_modules/react-native-notifications/lib/android/app/src/main/java/com/wix/reactnativenotifications/fcm/FcmToken.java
+index fb1aba4..e20a3b6 100644
+--- a/node_modules/react-native-notifications/lib/android/app/src/main/java/com/wix/reactnativenotifications/fcm/FcmToken.java
++++ b/node_modules/react-native-notifications/lib/android/app/src/main/java/com/wix/reactnativenotifications/fcm/FcmToken.java
+@@ -88,8 +88,8 @@ public class FcmToken implements IFcmToken {
+     }
+ 
+     protected void sendTokenToJS() {
+-        final ReactInstanceManager instanceManager = ((ReactApplication) mAppContext).getReactNativeHost().getReactInstanceManager();
+-        ReactContext reactContext = instanceManager.getCurrentReactContext();
++        ReactContext reactContext  = ((ReactApplication) mAppContext).getReactHost().getCurrentReactContext();
++
+ 
+         if (reactContext == null) {
+             // If the react context is not available, try to get the current context from the react host (RN0.76).
+diff --git a/node_modules/react-native-notifications/react-native.config.js b/node_modules/react-native-notifications/react-native.config.js
+index d246b0c..907c96f 100644
+--- a/node_modules/react-native-notifications/react-native.config.js
++++ b/node_modules/react-native-notifications/react-native.config.js
+@@ -4,7 +4,7 @@ module.exports = {
+       ios: {},
+       android: {
+         sourceDir: './lib/android/app',
+-        packageInstance: 'new RNNotificationsPackage(reactNativeHost.getApplication())',
++        packageInstance: 'new RNNotificationsPackage(application)',
+       }
+     },
+   },

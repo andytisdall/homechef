@@ -1,54 +1,85 @@
-import {View, Text, ScrollView, Pressable} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {zonedTimeToUtc, format} from 'date-fns-tz';
+import { View, Text, ScrollView, Pressable } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { zonedTimeToUtc, format } from "date-fns-tz";
+import { useMemo } from "react";
 
-import styles from './styles';
-import {SignupStackParamsList} from './Signup';
-import {useGetShiftsQuery} from '../../state/apis/volunteerApi';
-import Loading from '../reusable/Loading';
+import styles from "./styles";
+import { SignupStackParamsList } from "./Signup";
+import { useGetShiftsQuery } from "../../state/apis/volunteerApi";
+import Loading from "../reusable/Loading";
+import { Job, LowercaseRegion } from "@community-kitchens/apiinterfaces";
 
-type ScreenProps = NativeStackScreenProps<SignupStackParamsList, 'DateDetail'>;
+type ScreenProps = NativeStackScreenProps<SignupStackParamsList, "DateDetail">;
 
-const DateDetail = ({route, navigation}: ScreenProps) => {
-  const {data, isLoading} = useGetShiftsQuery();
+const DateDetail = ({ route, navigation }: ScreenProps) => {
+  const { data, isLoading } = useGetShiftsQuery();
 
-  const {shiftIds, date} = route.params;
+  const { shiftIds, date } = route.params;
   const shifts = data?.shifts;
   const jobs = data?.jobs;
-  if (!shifts) {
-    return <View>Shift Not Found</View>;
-  }
 
-  const dateShifts = shiftIds.map(id => shifts[id]);
-  if (shifts && !dateShifts.length) {
-    return <View>Shift Not Found</View>;
-  }
+  const dateShifts = shifts ? shiftIds.map((id) => shifts[id]) : [];
+  const dateJobs = jobs?.filter((job) =>
+    dateShifts.some((shift) => shift.job === job.id),
+  );
 
-  const renderShifts = () => {
+  const renderShifts = (fridge: Job) => {
+    const regionShifts = dateShifts.filter((shift) => shift.job === fridge.id);
+    return regionShifts.map((shift) => {
+      const renderLocation = () => {
+        if (fridge?.location) {
+          return (
+            <View style={styles.address}>
+              <Text>{fridge.location}</Text>
+              {!!fridge.locationCity && (
+                <Text>
+                  {", "}
+                  {fridge.locationCity}
+                </Text>
+              )}
+            </View>
+          );
+        }
+      };
+      return (
+        <Pressable
+          key={shift.id}
+          onPress={() =>
+            navigation.navigate("ShiftDetail", { shiftId: shift.id })
+          }
+        >
+          {({ pressed }) => {
+            const btnStyle: any[] = [styles.jobContainer];
+            if (pressed) {
+              btnStyle.push(styles.highlight);
+            }
+            return (
+              <View style={btnStyle}>
+                <Text style={styles.jobName}>{fridge?.name}</Text>
+                {renderLocation()}
+              </View>
+            );
+          }}
+        </Pressable>
+      );
+    });
+  };
+
+  const regions = useMemo(
+    () =>
+      Array.from(new Set(jobs?.filter((j) => j.region).map((j) => j.region!))),
+    [jobs],
+  );
+
+  const renderRegion = (region: LowercaseRegion) => {
     if (jobs) {
-      return dateShifts.map(shift => {
-        const job = jobs.find(j => j.id === shift.job);
-        return (
-          <Pressable
-            key={shift.id}
-            onPress={() =>
-              navigation.navigate('ShiftDetail', {shiftId: shift.id})
-            }>
-            {({pressed}) => {
-              const btnStyle: any[] = [styles.jobContainer];
-              if (pressed) {
-                btnStyle.push(styles.highlight);
-              }
-              return (
-                <View style={btnStyle}>
-                  <Text style={styles.jobName}>{job?.name}</Text>
-                  <Text>{job?.location}</Text>
-                </View>
-              );
-            }}
-          </Pressable>
-        );
-      });
+      const regionJobs = dateJobs?.filter((fridge) => fridge.region === region);
+      return (
+        <View key={region}>
+          <Text style={styles.regionHeader}>{region}</Text>
+          <View>{regionJobs?.map(renderShifts)}</View>
+        </View>
+      );
     }
   };
 
@@ -56,14 +87,26 @@ const DateDetail = ({route, navigation}: ScreenProps) => {
     return <Loading />;
   }
 
+  if (shifts && !dateShifts.length) {
+    return <View>Shifts Not Found</View>;
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.homeChef}>
-        <Text style={[styles.jobContainer, styles.signupTitle]}>
-          {format(zonedTimeToUtc(date, 'America/Los_Angeles'), 'eeee, M/d/yy')}
-        </Text>
-        <Text style={styles.jobSubHeader}>Available Fridges</Text>
-        {renderShifts()}
+        <View style={styles.dateDetailHeader}>
+          <Text>Available Fridges</Text>
+
+          <Text style={[styles.signupTitle]}>
+            {format(
+              zonedTimeToUtc(date, "America/Los_Angeles"),
+              "eeee, M/d/yy",
+            )}
+          </Text>
+        </View>
+        {regions
+          .filter((r) => dateJobs?.some((j) => j.region === r))
+          .map((region) => renderRegion(region))}
       </View>
     </ScrollView>
   );

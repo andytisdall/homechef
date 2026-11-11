@@ -1,10 +1,10 @@
-import {View, Text, Pressable} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import { View, Text, Pressable } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 
-import {setError} from '../../state/slices/errorSlice';
-import {setAlert} from '../../state/slices/alertSlice';
-import styles from './styles';
-import {RootState} from '../../state/store';
+import { setError } from "../../state/slices/errorSlice";
+import { setAlert } from "../../state/slices/alertSlice";
+import styles from "./styles";
+import { RootState } from "../../state/store";
 
 const Popup = () => {
   const error = useSelector((state: RootState) => state.error);
@@ -13,15 +13,15 @@ const Popup = () => {
   const dispatch = useDispatch();
 
   const clear = () => {
-    dispatch(setError(''));
-    dispatch(setAlert(''));
+    dispatch(setError(""));
+    dispatch(setAlert(""));
   };
 
   const renderMessage = () => {
     if (error.message) {
       return (
         <View style={[styles.popup, styles.error]}>
-          <Text style={styles.popupText}>{error.message}</Text>
+          <Text style={styles.popupText}>{JSON.stringify(error.message)}</Text>
         </View>
       );
     }

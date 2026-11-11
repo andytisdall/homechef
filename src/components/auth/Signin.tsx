@@ -1,66 +1,73 @@
-import {useState, useRef} from 'react';
+import { useState, useRef } from "react";
 import {
   View,
   Text,
   Pressable,
-  TextInput as NativeTextInput,
+  TextInputInstance,
   Image,
   ScrollView,
   Platform,
-} from 'react-native';
-import {TextInput} from 'react-native-paper';
-import {useDispatch} from 'react-redux';
+} from "react-native";
+import { TextInput } from "react-native-paper";
+import { useDispatch } from "react-redux";
 import {
   GoogleSignin,
   statusCodes,
-} from '@react-native-google-signin/google-signin';
+} from "@react-native-google-signin/google-signin";
 import {
   AppleButton,
   appleAuth,
-} from '@invertase/react-native-apple-authentication';
+} from "@invertase/react-native-apple-authentication";
 
-import {setError} from '../../state/slices/errorSlice';
-import Btn from '../reusable/Btn';
-import reusableStyles from '../reusable/styles';
-import styles from './styles';
-import Loading from '../reusable/Loading';
-import Title from '../reusable/Title';
+import { setError } from "../../state/slices/errorSlice";
+import Btn from "../reusable/Btn";
+import reusableStyles from "../reusable/styles";
+import styles from "./styles";
+import Loading from "../reusable/Loading";
+import Title from "../reusable/Title";
 import {
-  useGetUserQuery,
   useSignInMutation,
   useGoogleSignInMutation,
   useAppleSignInMutation,
-} from '../../state/apis/authApi';
+} from "../../state/apis/authApi";
+import { colors } from "../shiftSignup/styles";
 
 const SignIn = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const {data: user} = useGetUserQuery();
   const [signIn, signInResult] = useSignInMutation();
   const [googleSignIn, googleSignInResult] = useGoogleSignInMutation();
   const [appleSignIn, appleSignInResult] = useAppleSignInMutation();
 
   const dispatch = useDispatch();
 
-  const passwordFieldRef = useRef<NativeTextInput | null>(null);
+  const passwordFieldRef = useRef<TextInputInstance | null>(null);
 
   const handleSubmit = () => {
-    signIn({username, password});
+    signIn({ username, password }).unwrap();
   };
 
   const submitGoogleSignIn = async () => {
     try {
-      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true,
+      });
+
       const userInfo = await GoogleSignin.signIn();
-      if (userInfo.user.familyName && userInfo.user.givenName) {
-        googleSignIn({...userInfo.user, googleId: userInfo.user.id});
+
+      if (userInfo.data?.user.familyName && userInfo.data.user.givenName) {
+        googleSignIn({
+          ...userInfo.data.user,
+          googleId: userInfo.data?.user.id,
+        }).unwrap();
       }
     } catch (err: any) {
+      console.log(err);
       if (err.code === statusCodes.SIGN_IN_CANCELLED) {
-        dispatch(setError('Google Sign In Canceled'));
+        dispatch(setError("Google Sign In Canceled"));
       } else {
-        dispatch(setError('Google Sign In Failed'));
+        dispatch(setError("Google Sign In Failed"));
       }
     }
   };
@@ -93,7 +100,7 @@ const SignIn = () => {
       }
     } catch (err) {
       console.log(err);
-      dispatch(setError('Apple Login Failed'));
+      dispatch(setError("Apple Login Failed"));
     }
   };
 
@@ -113,7 +120,7 @@ const SignIn = () => {
   return (
     <ScrollView contentContainerStyle={reusableStyles.scrollView}>
       <View style={styles.signin}>
-        <Title headerText="Home Chef App" />
+        <Title headerText="Home Chef / Meal Delivery App" />
         <View style={styles.CKSignin}>
           <Text style={styles.signinText}>Sign in with your CK username</Text>
 
@@ -124,15 +131,15 @@ const SignIn = () => {
               onChangeText={setUsername}
               textColor="black"
               placeholder="Username"
-              blurOnSubmit
               returnKeyType="next"
-              placeholderTextColor="grey"
+              placeholderTextColor={colors.grey}
               onSubmitEditing={() => {
                 if (passwordFieldRef.current) {
                   passwordFieldRef.current.focus();
                 }
               }}
               autoCapitalize="none"
+              submitBehavior="blurAndSubmit"
             />
             <TextInput
               style={styles.authInput}
@@ -140,14 +147,14 @@ const SignIn = () => {
               onChangeText={setPassword}
               textColor="black"
               placeholder="Password"
-              blurOnSubmit
               returnKeyType="next"
               ref={passwordFieldRef}
               onSubmitEditing={handleSubmit}
               secureTextEntry
-              placeholderTextColor="grey"
+              autoCapitalize="none"
+              placeholderTextColor={colors.grey}
             />
-            <Text>{!!user && user.username}</Text>
+            {/* <Text>{!!user && user.username}</Text> */}
             <Btn style={styles.signinBtn} onPress={handleSubmit}>
               <Text style={styles.signinBtnText}>Sign In</Text>
             </Btn>
@@ -156,10 +163,10 @@ const SignIn = () => {
         <Text style={styles.signinText}>Or</Text>
         <View style={styles.googleSignIn}>
           <Pressable onPress={submitGoogleSignIn}>
-            {({pressed}) => {
+            {({ pressed }) => {
               const googleImg = pressed
-                ? require('../../assets/google-pressed.png')
-                : require('../../assets/google.png');
+                ? require("../../assets/google-pressed.png")
+                : require("../../assets/google.png");
               return (
                 <Image
                   source={googleImg}
@@ -170,7 +177,7 @@ const SignIn = () => {
             }}
           </Pressable>
         </View>
-        {Platform.OS === 'ios' && (
+        {Platform.OS === "ios" && (
           <AppleButton
             buttonStyle={AppleButton.Style.BLACK}
             buttonType={AppleButton.Type.SIGN_IN}
